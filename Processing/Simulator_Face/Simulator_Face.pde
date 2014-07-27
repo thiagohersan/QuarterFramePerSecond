@@ -44,8 +44,8 @@ void draw() {
     }
   }
   else if (mState == State.FLASHING_IN) {
-    flashValue = min(flashValue+20.0, 255.0);
-    if ((flashValue >= 255) && (stayWhiteCount>32)) {
+    flashValue = min(flashValue+40.0, 255.0);
+    if ((flashValue >= 255) && (stayWhiteCount>10)) {
       stayWhiteCount = 0;
       flashValue = -255.0;
       mState = State.FLASHING_OUT;
@@ -55,13 +55,13 @@ void draw() {
     }
   }
   else if (mState == State.FLASHING_OUT) {
-    flashValue = min(flashValue+20.0, 0.0);
+    flashValue = min(flashValue+40.0, 0.0);
     if (flashValue >= 0.0) {
       mState = State.FADING_PICTURE_IN;
     }
   }
   else if (mState == State.FADING_PICTURE_IN) {
-    flashValue = min(flashValue+20.0, 255.0);
+    flashValue = min(flashValue+40.0, 255.0);
     if ((flashValue >= 255) && (stayWhiteCount>10)) {
       stayWhiteCount = 0;
       flashValue = -255.0;
@@ -77,7 +77,7 @@ void draw() {
     }
   }
   else if (mState == State.CLEARING_PICTURE) {
-    flashValue = min(flashValue+20.0, 0.0);
+    flashValue = min(flashValue+40.0, 0.0);
     if (flashValue >= 0.0) {
       mState = State.WAITING;
       nextFlash = millis()+2000;
