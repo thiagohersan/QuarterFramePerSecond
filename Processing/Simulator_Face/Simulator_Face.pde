@@ -67,7 +67,7 @@ void draw() {
     }
     
     //draw image
-    pg.image(pic, 0, 0, 600, 600);
+    //pg.image(pic, 0, 0, 600, 600);
   }
 
   pg.endDraw();
@@ -90,10 +90,8 @@ void draw() {
   tint(255, 128);
   image(img, 0, 0);
   tint(255, 255);
-  image(mask, 0, 0);
+  //image(mask, 0, 0);
 }
-
-
 
 boolean fadeImage(PImage p) {
   boolean randColor = false;
@@ -106,30 +104,21 @@ boolean fadeImage(PImage p) {
     int g = (pixelColor >> 8) & 0xff;
     int b = pixelColor & 0xff;
 
-    if (r <=255) r+=6; 
-    if (g <=255) g+=6; 
-    if (b <=255) b+=6;
-    if (r >= 255 && g >= 255 && b >= 255) {
-      randColor = true;
-    } else {
-      randColor = false;
-    }
+    r = min(r+6, 255);
+    g = min(g+6, 255);
+    b = min(b+6, 255);
+    randColor = (r >= 255 && g >= 255 && b >= 255);
     p.pixels[i] = color(r, g, b);
   }
 
-
-  if (randColor) {
-    if (colorsToRand.size() > 0) {
-      Integer rColor = (Integer)colorsToRand.get((int)random(colorsToRand.size()));
-      findSimiliarColors(rColor, pic);
-    }
+  if (randColor && colorsToRand.size() > 0) {
+     Integer rColor = (Integer)colorsToRand.get((int)random(colorsToRand.size()));
+    findSimiliarColors(rColor, pic);
   }
+
   p.updatePixels();
 
-  if (colorsToRand.size()< 10)
-    return true;
-  else
-    return false;
+  return (colorsToRand.size() < 10);
 }
 
 
