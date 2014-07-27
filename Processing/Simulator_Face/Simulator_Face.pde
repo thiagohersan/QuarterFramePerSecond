@@ -21,15 +21,9 @@ void setup() {
   pg = createGraphics(400, 600);
   img = loadImage(serverAddress+"FIESP00_01s.png");
   mask = loadImage(serverAddress+"FIESP00_01s_mask.png");
-  pic = loadImage(serverAddress+"foto1.jpg");
-  pic.resize(600, 600);
 
   colorsToFade = new ArrayList<Integer>();
   colorsToRand = new ArrayList<Integer>();
-
-  //find a random color to start
-  int rColor = pic.pixels[(int)random(pic.pixels.length)];
-  findSimiliarColors(rColor, pic);
 
   nextFlash = millis()+2000;
 }
@@ -38,6 +32,15 @@ void draw() {
   // state transitions
   if (mState == State.WAITING) {
     if (millis() > nextFlash) {
+      //reload a pic
+      pic = loadImage("foto" + int(random(1, 7) )+ ".jpg");
+      pic.resize(600, 600);
+
+      // first color to Fade
+      int rColor = pic.pixels[(int)random(pic.pixels.length)];
+      //find a color to fade
+      findSimiliarColors(rColor, pic);
+
       mState = State.FLASHING_IN;
       flashValue = 1.0;
       stayWhiteCount = 0;
@@ -72,8 +75,9 @@ void draw() {
     }
   }
   else if (mState == State.FADING_PICTURE_OUT) {
-    // do something
-    mState = State.CLEARING_PICTURE;
+    if (fadeImage(pic) == false) {
+      mState = State.CLEARING_PICTURE;
+    }
   }
   else if (mState == State.CLEARING_PICTURE) {
     flashValue = min(flashValue+20.0, 0.0);
@@ -83,7 +87,7 @@ void draw() {
     }
   }
 
-  // drawing
+  // update images, drawings, graphics, etc...
   if ((mState == State.WAITING) || (mState == State.FLASHING_IN) || (mState == State.FLASHING_OUT)) {
     pg.beginDraw();
     pg.background(abs(flashValue));
@@ -97,23 +101,7 @@ void draw() {
     pg.endDraw();
   }
 
-
-  if (fadePicture) {
-    //fadeImage util there is no more colors to random 
-    if (fadeImage(pic)) {
-      fadePicture = false; //flag back to false so it can flash
-      //reload a pic
-      pic = loadImage("foto" + int(random(1, 7) )+ ".jpg");
-      pic.resize(600, 600);
-
-      // first color to Fade
-      int rColor = pic.pixels[(int)random(pic.pixels.length)];
-      //find a color to fade
-      findSimiliarColors(rColor, pic);
-    }
-  }
-
-
+  // actually draw stuff
   background(0);
   pushMatrix();
   translate(width/2, height/2);
@@ -151,7 +139,7 @@ boolean fadeImage(PImage p) {
 
   p.updatePixels();
 
-  return (colorsToRand.size() < 10);
+  return (colorsToRand.size() > 10);
 }
 
 
@@ -162,7 +150,6 @@ void findSimiliarColors(int c, PImage p) {
   p.loadPixels();
 
   for (int i = 0; i < p.pixels.length; i++) {
-
     int pixelColor = p.pixels[i];
     int r = (pixelColor >> 16) & 0xff;
     int g = (pixelColor >> 8) & 0xff;
