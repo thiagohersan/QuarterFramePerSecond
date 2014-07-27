@@ -11,20 +11,18 @@ boolean shotaPic = false;
 
 ArrayList<Integer> colorsToFade; 
 ArrayList<Integer> colorsToRand;
-
 int[] frame;
 
-
 void setup() {
-  size(600, 480);
+  size(900, 683);
   frameRate(60);
-  pg = createGraphics(400, 400);
+  pg = createGraphics(400, 600);
   serverAddress = "";
   img = loadImage(serverAddress+"FIESP00_01s.png");
   mask = loadImage(serverAddress+"FIESP00_01s_mask.png");
-  pic = loadImage(serverAddress+"foto" + int(random(1,6) )+ ".jpg");
+  pic = loadImage(serverAddress+"foto1.jpg");
 
-  pic.resize(350, 350);
+  pic.resize(600, 600);
   fv = 0;
 
   colorsToFade = new ArrayList<Integer>();
@@ -34,7 +32,6 @@ void setup() {
   pic.loadPixels();
   int rColor = pic.pixels[(int)random(pic.pixels.length)];
   findSimiliarColors(rColor, pic);
-
 
   nextFlash = millis()+2000;
   stayWhiteCount = 0;
@@ -53,18 +50,15 @@ void draw() {
 
   pg.beginDraw();
   pg.background(0);
-  pg.pushMatrix();
-  pg.translate(pg.width/1.4, pg.height/2);
   pg.background(abs(fv));
-  pg.popMatrix();
 
   if (shotaPic) { 
     //fadeImage util there is no more colors to random 
     if (fadeImage(pic)) {
       shotaPic = false; //flag back to false so it can flash
       //reload a pic
-      pic = loadImage("foto" + int(random(1,6) )+ ".jpg");
-      pic.resize(350, 350);
+      pic = loadImage("foto" + int(random(1,7) )+ ".jpg");
+      pic.resize(600, 600);
       
       // first color to Fade
       int rColor = pic.pixels[(int)random(pic.pixels.length)];
@@ -73,14 +67,11 @@ void draw() {
     }
     
     //draw image
-    pg.image(pic, 0, 0, 350, 350);
+    pg.image(pic, 0, 0, 600, 600);
   }
-  
-  
+
   pg.endDraw();
 
-  pushMatrix();
-  scale(0.8);
 
   if (fv > 0.0) {
     fv = min(fv+180.0, 255.0);
@@ -88,24 +79,18 @@ void draw() {
     else if (fv >= 255) stayWhiteCount++;
   } else if (fv < 0.0) {
     fv = min(fv+100.0, 0.0);
-
     shotaPic = true;
   }
-
-
 
   background(0);
   pushMatrix();
   translate(width/2, height/2);
-  image(pg, -pg.width/2, -pg.height/2.15);
+  image(pg, -pg.width/2, -pg.height/2);
+  popMatrix();
   tint(255, 128);
-  image(img, -img.width/2, -img.height/2.15);
+  image(img, 0, 0);
   tint(255, 255);
-  image(mask, -mask.width/2, -mask.height/2.15);
-
-
-  popMatrix();
-  popMatrix();
+  image(mask, 0, 0);
 }
 
 
@@ -149,7 +134,6 @@ boolean fadeImage(PImage p) {
 
 
 void findSimiliarColors(int c, PImage p) {
-
   colorsToFade.clear();
   colorsToRand.clear();
 
