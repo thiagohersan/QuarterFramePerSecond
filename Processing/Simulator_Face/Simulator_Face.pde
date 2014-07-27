@@ -2,12 +2,12 @@ PGraphics pg;
 PImage img, mask;
 PImage pic;
 
-float fv;
+float flashValue;
 String serverAddress = "http://www.thiagohersan.com/scripts/";
 long nextFlash;
 int stayWhiteCount;
 
-boolean shotaPic = false;
+boolean fadePicture = false;
 
 ArrayList<Integer> colorsToFade; 
 ArrayList<Integer> colorsToRand;
@@ -23,7 +23,7 @@ void setup() {
   pic = loadImage(serverAddress+"foto1.jpg");
 
   pic.resize(600, 600);
-  fv = 0;
+  flashValue = 0;
 
   colorsToFade = new ArrayList<Integer>();
   colorsToRand = new ArrayList<Integer>();
@@ -38,24 +38,24 @@ void setup() {
 }
 
 void flash() {
-  fv = 1.0;
+  flashValue = 1.0;
   stayWhiteCount = 0;
 }
 
 void draw() {
-  if (millis() > nextFlash && shotaPic == false) {
+  if (millis() > nextFlash && fadePicture == false) {
     nextFlash = millis()+2000;
     flash();
   }
 
   pg.beginDraw();
   pg.background(0);
-  pg.background(abs(fv));
+  pg.background(abs(flashValue));
 
-  if (shotaPic) { 
+  if (fadePicture) {
     //fadeImage util there is no more colors to random 
     if (fadeImage(pic)) {
-      shotaPic = false; //flag back to false so it can flash
+      fadePicture = false; //flag back to false so it can flash
       //reload a pic
       pic = loadImage("foto" + int(random(1,7) )+ ".jpg");
       pic.resize(600, 600);
@@ -73,13 +73,13 @@ void draw() {
   pg.endDraw();
 
 
-  if (fv > 0.0) {
-    fv = min(fv+180.0, 255.0);
-    if ((fv >= 255) && (stayWhiteCount>8)) fv = -255.0;
-    else if (fv >= 255) stayWhiteCount++;
-  } else if (fv < 0.0) {
-    fv = min(fv+100.0, 0.0);
-    shotaPic = true;
+  if (flashValue > 0.0) {
+    flashValue = min(flashValue+180.0, 255.0);
+    if ((flashValue >= 255) && (stayWhiteCount>8)) flashValue = -255.0;
+    else if (flashValue >= 255) stayWhiteCount++;
+  } else if (flashValue < 0.0) {
+    flashValue = min(flashValue+100.0, 0.0);
+    fadePicture = true;
   }
 
   background(0);
