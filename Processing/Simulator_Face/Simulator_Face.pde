@@ -30,7 +30,7 @@ void draw() {
   if (mState == State.WAITING) {
     if (millis() > nextFlash) {
       //reload a pic
-      pic = loadImage("foto" + int(random(1, 6))+ ".jpg");
+      pic = loadImage("foto" + int(random(4))+ ".jpg");
       pic.resize(500, 500);
 
       // first color to Fade
