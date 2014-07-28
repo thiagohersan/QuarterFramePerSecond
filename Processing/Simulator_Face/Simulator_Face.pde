@@ -45,7 +45,7 @@ void draw() {
   }
   else if (mState == State.FLASHING_IN) {
     flashValue = min(flashValue+40.0, 255.0);
-    if ((flashValue >= 255) && (stayWhiteCount>10)) {
+    if ((flashValue >= 255) && (stayWhiteCount>8)) {
       stayWhiteCount = 0;
       flashValue = -255.0;
       mState = State.FLASHING_OUT;
@@ -55,13 +55,14 @@ void draw() {
     }
   }
   else if (mState == State.FLASHING_OUT) {
-    flashValue = min(flashValue+40.0, 0.0);
+    flashValue = min(flashValue+50.0, 0.0);
     if (flashValue >= 0.0) {
+      flashValue = 0.0;
       mState = State.FADING_PICTURE_IN;
     }
   }
   else if (mState == State.FADING_PICTURE_IN) {
-    flashValue = min(flashValue+40.0, 255.0);
+    flashValue = min(flashValue+8.0, 255.0);
     if ((flashValue >= 255) && (stayWhiteCount>10)) {
       stayWhiteCount = 0;
       flashValue = -255.0;
@@ -136,7 +137,7 @@ boolean fadeImage(PImage p) {
 
   p.updatePixels();
 
-  return (colorsToRand.size() > 10);
+  return (colorsToRand.size() > 200);
 }
 
 
@@ -159,7 +160,7 @@ void findSimiliarColors(int c, PImage p) {
     int b2 = pixelColor & 0xff;
 
 
-    if (sqrt(pow(r2-r, 2) + pow(g2-g, 2) + pow(b2-b, 2) ) < 150) {
+    if (sqrt(pow(r2-r, 2) + pow(g2-g, 2) + pow(b2-b, 2) ) < 100) {
       pixelsToFade.add(i);
     }
     else if (colorsToRand.size() < 255) {
