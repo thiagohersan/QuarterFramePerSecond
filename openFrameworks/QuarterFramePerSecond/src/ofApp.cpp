@@ -25,6 +25,18 @@ void ofApp::setup(){
     pathRight.lineTo(193,426);
     pathRight.close();
 
+    newPathLeft.moveTo(110,259);
+    newPathLeft.lineTo(119,259);
+    newPathLeft.lineTo(98,426);
+    newPathLeft.lineTo(37,426);
+    newPathLeft.close();
+
+    newPathRight.moveTo(172,259);
+    newPathRight.lineTo(178,259);
+    newPathRight.lineTo(251,426);
+    newPathRight.lineTo(193,426);
+    newPathRight.close();
+
     mCanvas.allocate(214, 167, OF_IMAGE_COLOR);
     mPanels.allocate(214, 167, OF_IMAGE_COLOR);
 
@@ -52,6 +64,13 @@ void ofApp::draw(){
     pathLeft.draw();
     pathCenter.draw();
     pathRight.draw();
+
+    ofPushMatrix();
+    ofTranslate(0,-200);
+    newPathLeft.draw();
+    pathCenter.draw();
+    newPathRight.draw();
+    ofPopMatrix();
 
     mCanvas.draw(400,14);
     mPanels.draw(400,259);

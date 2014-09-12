@@ -20,7 +20,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
         ofxSyphonServer syphonServer;
-        ofPath pathLeft, pathCenter, pathRight;
+        ofPath pathLeft, pathCenter, pathRight, newPathRight, newPathLeft;
         ofImage mCanvas, mPanels;
 
         void toPanels(ofImage &mCanvas, ofImage &mPanels);
