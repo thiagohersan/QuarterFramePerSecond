@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxSyphon.h"
+#include "ofxEdsdk.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -24,4 +25,6 @@ class ofApp : public ofBaseApp{
         ofImage mCanvas, mPanels;
 
         void toPanels(ofImage &mCanvas, ofImage &mPanels);
+
+        ofxEdsdk::Camera camera;
 };
