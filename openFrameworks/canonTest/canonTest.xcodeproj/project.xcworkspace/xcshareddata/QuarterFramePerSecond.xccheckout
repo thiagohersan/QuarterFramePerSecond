@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9CABE39F-055A-4417-8BBB-1E912A3248A5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>QuarterFramePerSecond</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D8465A9D362415AA5290BE179582EEA1CEAD8D96</key>
+		<string>github.com:radames/QuarterFramePerSecond.git</string>
+		<key>F4CCB893AFADB97238A965FD2F28717F1CAAE613</key>
+		<string>https://github.com/astellato/ofxSyphon.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>openFrameworks/canonTest/QuarterFramePerSecond.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D8465A9D362415AA5290BE179582EEA1CEAD8D96</key>
+		<string>../../../..</string>
+		<key>F4CCB893AFADB97238A965FD2F28717F1CAAE613</key>
+		<string>../../../../../../../../Development/of_v0.8.4_osx_release/addons/ofxSyphon</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:radames/QuarterFramePerSecond.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D8465A9D362415AA5290BE179582EEA1CEAD8D96</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F4CCB893AFADB97238A965FD2F28717F1CAAE613</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxSyphon</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D8465A9D362415AA5290BE179582EEA1CEAD8D96</string>
+			<key>IDESourceControlWCCName</key>
+			<string>QuarterFramePerSecond</string>
+		</dict>
+	</array>
+</dict>
+</plist>
