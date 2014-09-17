@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF3E1B4319CA319700A8492B /* DPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E1B2819CA319700A8492B /* DPP.framework */; };
+		AF3E1B4419CA319700A8492B /* EDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E1B2919CA319700A8492B /* EDSDK.framework */; };
+		AF3E1B4519CA319700A8492B /* EdsExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3519CA319700A8492B /* EdsExamples.cpp */; };
+		AF3E1B4619CA319700A8492B /* EdsException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3719CA319700A8492B /* EdsException.cpp */; };
+		AF3E1B4719CA319700A8492B /* EdsStrings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3919CA319700A8492B /* EdsStrings.cpp */; };
+		AF3E1B4819CA319700A8492B /* EdsWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3B19CA319700A8492B /* EdsWrapper.cpp */; };
+		AF3E1B4919CA319700A8492B /* ofxEdsdk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3E19CA319700A8492B /* ofxEdsdk.cpp */; };
+		AF3E1B4E19CA31DA00A8492B /* DPP.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF3E1B2819CA319700A8492B /* DPP.framework */; };
+		AF3E1B4F19CA31DA00A8492B /* EDSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF3E1B2919CA319700A8492B /* EDSDK.framework */; };
 		AF4DAEDE19C02E9B00114F1F /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF4DAEDC19C02E9B00114F1F /* ofApp.cpp */; };
 		AF4DAEEA19C0315E00114F1F /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4DAEE919C0304A00114F1F /* openFrameworksDebug.a */; };
 		AF4DAF1C19C032D400114F1F /* ofxSyphon.h in Sources */ = {isa = PBXBuildFile; fileRef = AF4DAF0F19C0326800114F1F /* ofxSyphon.h */; };
@@ -51,6 +60,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AF3E1B4E19CA31DA00A8492B /* DPP.framework in CopyFiles */,
+				AF3E1B4F19CA31DA00A8492B /* EDSDK.framework in CopyFiles */,
 				AF4DAF2019C0360400114F1F /* Syphon.framework in CopyFiles */,
 				AFF41FB419C230E6008EEB42 /* GLUT.framework in CopyFiles */,
 			);
@@ -59,6 +70,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AF3E1B2819CA319700A8492B /* DPP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DPP.framework; sourceTree = "<group>"; };
+		AF3E1B2919CA319700A8492B /* EDSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDSDK.framework; sourceTree = "<group>"; };
+		AF3E1B2D19CA319700A8492B /* EDSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSDK.h; sourceTree = "<group>"; };
+		AF3E1B2E19CA319700A8492B /* EDSDKErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSDKErrors.h; sourceTree = "<group>"; };
+		AF3E1B2F19CA319700A8492B /* EDSDKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSDKTypes.h; sourceTree = "<group>"; };
+		AF3E1B3519CA319700A8492B /* EdsExamples.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsExamples.cpp; sourceTree = "<group>"; };
+		AF3E1B3619CA319700A8492B /* EdsExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsExamples.h; sourceTree = "<group>"; };
+		AF3E1B3719CA319700A8492B /* EdsException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsException.cpp; sourceTree = "<group>"; };
+		AF3E1B3819CA319700A8492B /* EdsException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsException.h; sourceTree = "<group>"; };
+		AF3E1B3919CA319700A8492B /* EdsStrings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsStrings.cpp; sourceTree = "<group>"; };
+		AF3E1B3A19CA319700A8492B /* EdsStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsStrings.h; sourceTree = "<group>"; };
+		AF3E1B3B19CA319700A8492B /* EdsWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsWrapper.cpp; sourceTree = "<group>"; };
+		AF3E1B3C19CA319700A8492B /* EdsWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsWrapper.h; sourceTree = "<group>"; };
+		AF3E1B3D19CA319700A8492B /* FixedQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedQueue.h; sourceTree = "<group>"; };
+		AF3E1B3E19CA319700A8492B /* ofxEdsdk.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ofxEdsdk.cpp; sourceTree = "<group>"; };
+		AF3E1B3F19CA319700A8492B /* ofxEdsdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxEdsdk.h; sourceTree = "<group>"; };
+		AF3E1B4019CA319700A8492B /* RateTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateTimer.h; sourceTree = "<group>"; };
 		AF4DAEDC19C02E9B00114F1F /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
 		AF4DAEDD19C02E9B00114F1F /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
 		AF4DAEE319C0303F00114F1F /* CoreOF.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../openFrameworks/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = "<group>"; };
@@ -102,10 +130,12 @@
 			files = (
 				AF4DAEEA19C0315E00114F1F /* openFrameworksDebug.a in Frameworks */,
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
+				AF3E1B4419CA319700A8492B /* EDSDK.framework in Frameworks */,
 				AF8333DB19C22F4D00942532 /* GLUT.framework in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
+				AF3E1B4319CA319700A8492B /* DPP.framework in Frameworks */,
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
 				AF4DAF1F19C033E900114F1F /* Syphon.framework in Frameworks */,
 				E45BE97E0E8CC7DD009D7055 /* Carbon.framework in Frameworks */,
@@ -124,6 +154,79 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF3E1B1419CA319700A8492B /* ofxEdsdk */ = {
+			isa = PBXGroup;
+			children = (
+				AF3E1B2419CA319700A8492B /* lib */,
+				AF3E1B3319CA319700A8492B /* src */,
+			);
+			name = ofxEdsdk;
+			path = ../../../../../../Dev/openFrameworks/addons/ofxEdsdk;
+			sourceTree = "<group>";
+		};
+		AF3E1B2419CA319700A8492B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				AF3E1B2519CA319700A8492B /* EDSDK */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		AF3E1B2519CA319700A8492B /* EDSDK */ = {
+			isa = PBXGroup;
+			children = (
+				AF3E1B2619CA319700A8492B /* Framework */,
+				AF3E1B2B19CA319700A8492B /* Header */,
+			);
+			path = EDSDK;
+			sourceTree = "<group>";
+		};
+		AF3E1B2619CA319700A8492B /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				AF3E1B2819CA319700A8492B /* DPP.framework */,
+				AF3E1B2919CA319700A8492B /* EDSDK.framework */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		AF3E1B2B19CA319700A8492B /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				AF3E1B2D19CA319700A8492B /* EDSDK.h */,
+				AF3E1B2E19CA319700A8492B /* EDSDKErrors.h */,
+				AF3E1B2F19CA319700A8492B /* EDSDKTypes.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		AF3E1B3319CA319700A8492B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				AF3E1B3419CA319700A8492B /* EdsWrapper */,
+				AF3E1B3D19CA319700A8492B /* FixedQueue.h */,
+				AF3E1B3E19CA319700A8492B /* ofxEdsdk.cpp */,
+				AF3E1B3F19CA319700A8492B /* ofxEdsdk.h */,
+				AF3E1B4019CA319700A8492B /* RateTimer.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		AF3E1B3419CA319700A8492B /* EdsWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				AF3E1B3519CA319700A8492B /* EdsExamples.cpp */,
+				AF3E1B3619CA319700A8492B /* EdsExamples.h */,
+				AF3E1B3719CA319700A8492B /* EdsException.cpp */,
+				AF3E1B3819CA319700A8492B /* EdsException.h */,
+				AF3E1B3919CA319700A8492B /* EdsStrings.cpp */,
+				AF3E1B3A19CA319700A8492B /* EdsStrings.h */,
+				AF3E1B3B19CA319700A8492B /* EdsWrapper.cpp */,
+				AF3E1B3C19CA319700A8492B /* EdsWrapper.h */,
+			);
+			path = EdsWrapper;
+			sourceTree = "<group>";
+		};
 		AF4DAEE519C0304900114F1F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +304,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				AF3E1B1419CA319700A8492B /* ofxEdsdk */,
 				AF4DAEEB19C0326700114F1F /* ofxSyphon */,
 			);
 			name = addons;
@@ -362,11 +466,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF3E1B4819CA319700A8492B /* EdsWrapper.cpp in Sources */,
 				AF4DAF1D19C0339B00114F1F /* ofxSyphonServer.h in Sources */,
 				AF4DAF1E19C0339B00114F1F /* ofxSyphonServer.mm in Sources */,
+				AF3E1B4519CA319700A8492B /* EdsExamples.cpp in Sources */,
+				AF3E1B4719CA319700A8492B /* EdsStrings.cpp in Sources */,
 				AF4DAF1C19C032D400114F1F /* ofxSyphon.h in Sources */,
 				AF4DAEDE19C02E9B00114F1F /* ofApp.cpp in Sources */,
+				AF3E1B4919CA319700A8492B /* ofxEdsdk.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				AF3E1B4619CA319700A8492B /* EdsException.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +557,7 @@
 					"$(OF_PATH)/export/osx/Frameworks",
 					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/lib/osx",
 					"$(inherited)",
+					"$(OF_PATH)/addons/ofxEdsdk/lib/EDSDK/Framework",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(OF_PATH)/libs/glut/lib/osx\"";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -478,6 +588,7 @@
 					"$(OF_PATH)/export/osx/Frameworks",
 					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/lib/osx",
 					"$(inherited)",
+					"$(OF_PATH)/addons/ofxEdsdk/lib/EDSDK/Framework",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(OF_PATH)/libs/glut/lib/osx\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
