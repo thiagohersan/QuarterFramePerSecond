@@ -36,7 +36,7 @@ void draw() {
       // first color to Fade
       int rColor = pic.pixels[(int)random(pic.pixels.length)];
       //find a color to fade
-      findSimiliarColors(rColor, pic);
+      findSimilarColors(rColor, pic);
 
       mState = State.FLASHING_IN;
       flashValue = 1.0;
@@ -132,7 +132,7 @@ boolean fadeImage(PImage p) {
 
   if (randColor && colorsToRand.size() > 0) {
     int rColor = (int)colorsToRand.get((int)random(colorsToRand.size()));
-    findSimiliarColors(rColor, pic);
+    findSimilarColors(rColor, p);
   }
 
   p.updatePixels();
@@ -141,7 +141,7 @@ boolean fadeImage(PImage p) {
 }
 
 
-void findSimiliarColors(int c, PImage p) {
+void findSimilarColors(int c, PImage p) {
   pixelsToFade.clear();
   colorsToRand.clear();
 
