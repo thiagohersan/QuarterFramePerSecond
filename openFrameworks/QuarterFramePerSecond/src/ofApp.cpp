@@ -48,12 +48,93 @@ void ofApp::setup(){
         }
     }
     mCanvas.reloadTexture();
+
+    nextFlash = ofGetElapsedTimeMillis()+2000;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    syphonServer.publishScreen();
+    // state transitions
+    if (mState == WAITING) {
+        if (ofGetElapsedTimeMillis() > nextFlash) {
+            //reload a pic
+            mFoto.loadImage("foto"+ofToString((int)ofRandom(4))+ ".jpg");
+            mFoto.resize(mCanvas.getWidth(), mCanvas.getHeight());
+
+            // first color to Fade
+            ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
+            //find a color to fade
+            findSimilarColors(rColor, mFoto);
+
+            mState = FLASHING_IN;
+            flashValue = 1.0;
+            stayWhiteCount = 0;
+        }
+    }
+    else if (mState == FLASHING_IN) {
+        flashValue = min(flashValue+40.0, 255.0);
+        if ((flashValue >= 255) && (stayWhiteCount>8)) {
+            stayWhiteCount = 0;
+            flashValue = -255.0;
+            mState = FLASHING_OUT;
+        }
+        else if (flashValue >= 255) {
+            stayWhiteCount++;
+        }
+    }
+    else if (mState == FLASHING_OUT) {
+        flashValue = min(flashValue+50.0, 0.0);
+        if (flashValue >= 0.0) {
+            flashValue = 0.0;
+            mState = FADING_PICTURE_IN;
+        }
+    }
+    else if (mState == FADING_PICTURE_IN) {
+        flashValue = min(flashValue+8.0, 255.0);
+        if ((flashValue >= 255) && (stayWhiteCount>10)) {
+            stayWhiteCount = 0;
+            flashValue = -255.0;
+            mState = FADING_PICTURE_OUT;
+        }
+        else if (flashValue >= 255) {
+            stayWhiteCount++;
+        }
+    }
+    else if (mState == FADING_PICTURE_OUT) {
+        if (fadeImage(mFoto) == false) {
+            mState = CLEARING_PICTURE;
+        }
+    }
+    else if (mState == CLEARING_PICTURE) {
+        flashValue = min(flashValue+40.0, 0.0);
+        if (flashValue >= 0.0) {
+            mState = WAITING;
+            nextFlash = ofGetElapsedTimeMillis()+2000;
+        }
+    }
+
+    // update images, drawings, graphics, etc...
+    if ((mState == WAITING) || (mState == FLASHING_IN) || (mState == FLASHING_OUT)) {
+        mCanvas.setColor(ofColor(abs(flashValue)));
+    }
+    else if ((mState == FADING_PICTURE_IN) || (mState == FADING_PICTURE_OUT) || (mState == CLEARING_PICTURE)) {
+        // scale
+        float sFactor = max(mCanvas.width/mFoto.width, mCanvas.height/mFoto.height);
+        mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
+
+        // draw to temp fbo with a tint
+        ofFbo tempFbo;
+        tempFbo.allocate(mCanvas.width, mCanvas.height);
+        tempFbo.begin();
+        ofSetColor(ofColor(abs(flashValue)));
+        mFoto.draw((mFoto.width-tempFbo.getWidth())/2, (mFoto.height-tempFbo.getHeight())/2);
+        tempFbo.end();
+
+        tempFbo.readToPixels(mCanvas.getPixelsRef());
+    }
+
     toPanels(mCanvas, mPanels);
+    syphonServer.publishScreen();
 }
 
 //--------------------------------------------------------------
@@ -100,6 +181,47 @@ void ofApp::toPanels(ofImage &mCanvas, ofImage &mPanels){
     }
     mPanels.reloadTexture();
 }
+
+void ofApp::findSimilarColors(ofColor c, ofImage p) {
+    pixelsToFade.clear();
+    colorsToRand.clear();
+
+    for (int y=0; y<p.height; y++) {
+        for (int x=0; x<p.width; x++) {
+            ofColor pixelColor = p.getColor(x, y);
+            ofVec3f rgb(pixelColor.r, pixelColor.g, pixelColor.b);
+            ofVec3f rgb2(c.r, c.g, c.b);
+
+            if(rgb.distanceSquared(rgb2) < 10000){
+                pixelsToFade.push_back(ofVec2f(x,y));
+            }
+            else if (colorsToRand.size() < 255) {
+                colorsToRand.push_back(p.getColor(x,y));
+            }
+        }
+    }
+}
+
+bool ofApp::fadeImage(ofImage p) {
+    bool randColor = false;
+
+    for(vector<ofVec2f>::iterator it=pixelsToFade.begin(); it!=pixelsToFade.end(); ++it){
+        ofColor pixelColor = p.getColor(it->x, it->y);
+
+        pixelColor = ofColor(min(pixelColor.r+6, 255), min(pixelColor.g+6, 255), min(pixelColor.b+6, 255));
+
+        randColor = (pixelColor.r >= 255 && pixelColor.g >= 255 && pixelColor.b >= 255);
+        p.setColor(it->x, it->y, pixelColor);
+    }
+
+    if (randColor && colorsToRand.size() > 0) {
+        ofColor rColor = colorsToRand.at(ofRandom(colorsToRand.size()));
+        findSimilarColors(rColor, p);
+    }
+
+    return (colorsToRand.size() > 200);
+}
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
