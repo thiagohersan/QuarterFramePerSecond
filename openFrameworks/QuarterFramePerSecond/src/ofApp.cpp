@@ -49,7 +49,8 @@ void ofApp::setup(){
     }
     mCanvas.reloadTexture();
 
-    nextFlash = ofGetElapsedTimeMillis()+2000;
+    nextFlash = ofGetElapsedTimeMillis()+500;
+    mState = WAITING;
 }
 
 //--------------------------------------------------------------
@@ -182,7 +183,7 @@ void ofApp::toPanels(ofImage &mCanvas, ofImage &mPanels){
     mPanels.reloadTexture();
 }
 
-void ofApp::findSimilarColors(ofColor c, ofImage p) {
+void ofApp::findSimilarColors(ofColor &c, ofImage &p) {
     pixelsToFade.clear();
     colorsToRand.clear();
 
@@ -202,7 +203,7 @@ void ofApp::findSimilarColors(ofColor c, ofImage p) {
     }
 }
 
-bool ofApp::fadeImage(ofImage p) {
+bool ofApp::fadeImage(ofImage &p) {
     bool randColor = false;
 
     for(vector<ofVec2f>::iterator it=pixelsToFade.begin(); it!=pixelsToFade.end(); ++it){
@@ -213,6 +214,7 @@ bool ofApp::fadeImage(ofImage p) {
         randColor = (pixelColor.r >= 255 && pixelColor.g >= 255 && pixelColor.b >= 255);
         p.setColor(it->x, it->y, pixelColor);
     }
+    p.reloadTexture();
 
     if (randColor && colorsToRand.size() > 0) {
         ofColor rColor = colorsToRand.at(ofRandom(colorsToRand.size()));

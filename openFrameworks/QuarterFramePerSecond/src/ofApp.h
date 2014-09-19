@@ -25,8 +25,8 @@ class ofApp : public ofBaseApp{
         ofImage mCanvas, mPanels;
 
         void toPanels(ofImage &mCanvas, ofImage &mPanels);
-        void findSimilarColors(ofColor c, ofImage p);
-        bool fadeImage(ofImage p);
+        void findSimilarColors(ofColor &c, ofImage &p);
+        bool fadeImage(ofImage &p);
 
         ofxEdsdk::Camera mCamera;
 
