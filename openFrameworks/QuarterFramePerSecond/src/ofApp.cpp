@@ -98,8 +98,8 @@ void ofApp::update(){
         }
     }
     else if (mState == FADING_PICTURE_IN) {
-        flashValue = min(flashValue+8.0, 255.0);
-        if ((flashValue >= 255) && (stayWhiteCount>10)) {
+        flashValue = min(flashValue+1.0, 255.0);
+        if ((flashValue >= 255) && (stayWhiteCount>50)) {
             stayWhiteCount = 0;
             flashValue = -255.0;
             mState = FADING_PICTURE_OUT;
