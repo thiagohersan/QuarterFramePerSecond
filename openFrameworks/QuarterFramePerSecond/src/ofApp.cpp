@@ -114,7 +114,7 @@ void ofApp::update(){
         }
     }
     else if (mState == CLEARING_PICTURE) {
-        flashValue = min(flashValue+40.0, 0.0);
+        flashValue = min(flashValue+4.0, 0.0);
         if (flashValue >= 0.0) {
             mState = WAITING;
             nextFlash = ofGetElapsedTimeMillis()+2000;
