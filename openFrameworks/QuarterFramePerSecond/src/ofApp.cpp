@@ -49,6 +49,13 @@ void ofApp::setup(){
     }
     mCanvas.reloadTexture();
 
+    for(int y=0; y<mPanels.getHeight(); y++) {
+        for(int x=0; x<mPanels.getWidth(); x++) {
+            mPanels.setColor(x, y, ofColor(0));
+        }
+    }
+    mPanels.reloadTexture();
+
     nextFlash = ofGetElapsedTimeMillis()+500;
     mState = WAITING;
 }
