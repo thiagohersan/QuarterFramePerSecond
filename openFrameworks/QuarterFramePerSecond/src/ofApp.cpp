@@ -67,7 +67,8 @@ void ofApp::update(){
         if (ofGetElapsedTimeMillis() > nextFlash) {
             //reload a pic
             mFoto.loadImage("foto"+ofToString((int)ofRandom(4))+ ".jpg");
-            mFoto.resize(mCanvas.getWidth(), mCanvas.getHeight());
+            float sFactor = max((float)(mCanvas.width)/mFoto.width, (float)(mCanvas.height)/mFoto.height);
+            mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
 
             // first color to Fade
             ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
@@ -126,10 +127,6 @@ void ofApp::update(){
         mCanvas.setColor(ofColor(abs(flashValue)));
     }
     else if ((mState == FADING_PICTURE_IN) || (mState == FADING_PICTURE_OUT) || (mState == CLEARING_PICTURE)) {
-        // scale
-        float sFactor = max(mCanvas.width/mFoto.width, mCanvas.height/mFoto.height);
-        mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
-
         // draw to temp fbo with a tint
         ofFbo tempFbo;
         tempFbo.allocate(mCanvas.width, mCanvas.height);
@@ -139,6 +136,7 @@ void ofApp::update(){
         tempFbo.end();
 
         tempFbo.readToPixels(mCanvas.getPixelsRef());
+        mCanvas.reloadTexture();
     }
 
     toPanels(mCanvas, mPanels);
