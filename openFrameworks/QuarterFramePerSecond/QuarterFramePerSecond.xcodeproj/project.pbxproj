@@ -161,7 +161,7 @@
 				AF3E1B3319CA319700A8492B /* src */,
 			);
 			name = ofxEdsdk;
-			path = ../../../../../../Dev/openFrameworks/addons/ofxEdsdk;
+			path =../../../openFrameworks/addons/ofxEdsdk;
 			sourceTree = "<group>";
 		};
 		AF3E1B2419CA319700A8492B /* lib */ = {
