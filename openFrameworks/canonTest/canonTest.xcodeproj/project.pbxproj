@@ -165,7 +165,7 @@
 				51DC92C219CA37180006A5DF /* src */,
 			);
 			name = ofxEdsdk;
-			path = ../../../../../../Development/of_v0.8.4_osx_release/addons/ofxEdsdk;
+			path = ../../../openFrameworks/addons/ofxEdsdk;
 			sourceTree = "<group>";
 		};
 		51DC92B719CA37180006A5DF /* lib */ = {
@@ -563,7 +563,7 @@
 					"$(OF_PATH)/export/osx/Frameworks",
 					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/lib/osx",
 					"$(inherited)",
-					/Users/radames/Development/of_v0.8.4_osx_release/addons/ofxEdsdk/lib/EDSDK/Framework,
+					"$(OF_PATH)/addons/ofxEdsdk/lib/EDSDK/Framework",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(OF_PATH)/libs/glut/lib/osx\"";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -595,7 +595,7 @@
 					"$(OF_PATH)/export/osx/Frameworks",
 					"$(OF_PATH)/addons/ofxSyphon/libs/Syphon/lib/osx",
 					"$(inherited)",
-					/Users/radames/Development/of_v0.8.4_osx_release/addons/ofxEdsdk/lib/EDSDK/Framework,
+					"$(OF_PATH)/addons/ofxEdsdk/lib/EDSDK/Framework",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(OF_PATH)/libs/glut/lib/osx\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;

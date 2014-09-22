@@ -22,11 +22,11 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>36985836DF35EF8F5D7D4E20C1E7B9D301114BDF</key>
-		<string>../../../../../../../../Development/of_v0.8.4_osx_release/addons/ofxEdsdk</string>
+		<string>../../../../../Development/of_v0.8.4_osx_release/addons/ofxEdsdk</string>
 		<key>D8465A9D362415AA5290BE179582EEA1CEAD8D96</key>
 		<string>../../../..</string>
 		<key>F4CCB893AFADB97238A965FD2F28717F1CAAE613</key>
-		<string>../../../../../../../../Development/of_v0.8.4_osx_release/addons/ofxSyphon</string>
+		<string>../../../../../Development/of_v0.8.4_osx_release/addons/ofxSyphon</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:radames/QuarterFramePerSecond.git</string>
