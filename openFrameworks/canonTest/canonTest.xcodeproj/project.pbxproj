@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF3E1B4319CA319700A8492B /* DPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E1B2819CA319700A8492B /* DPP.framework */; };
-		AF3E1B4419CA319700A8492B /* EDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3E1B2919CA319700A8492B /* EDSDK.framework */; };
-		AF3E1B4519CA319700A8492B /* EdsExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3519CA319700A8492B /* EdsExamples.cpp */; };
-		AF3E1B4619CA319700A8492B /* EdsException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3719CA319700A8492B /* EdsException.cpp */; };
-		AF3E1B4719CA319700A8492B /* EdsStrings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3919CA319700A8492B /* EdsStrings.cpp */; };
-		AF3E1B4819CA319700A8492B /* EdsWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3B19CA319700A8492B /* EdsWrapper.cpp */; };
-		AF3E1B4919CA319700A8492B /* ofxEdsdk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF3E1B3E19CA319700A8492B /* ofxEdsdk.cpp */; };
-		AF3E1B4E19CA31DA00A8492B /* DPP.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF3E1B2819CA319700A8492B /* DPP.framework */; };
-		AF3E1B4F19CA31DA00A8492B /* EDSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF3E1B2919CA319700A8492B /* EDSDK.framework */; };
+		51DC92D019CA37180006A5DF /* DPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC92BA19CA37180006A5DF /* DPP.framework */; };
+		51DC92D119CA37180006A5DF /* EDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC92BB19CA37180006A5DF /* EDSDK.framework */; };
+		51DC92D319CA37180006A5DF /* EdsExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51DC92C419CA37180006A5DF /* EdsExamples.cpp */; };
+		51DC92D419CA37180006A5DF /* EdsException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51DC92C619CA37180006A5DF /* EdsException.cpp */; };
+		51DC92D519CA37180006A5DF /* EdsStrings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51DC92C819CA37180006A5DF /* EdsStrings.cpp */; };
+		51DC92D619CA37180006A5DF /* EdsWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51DC92CA19CA37180006A5DF /* EdsWrapper.cpp */; };
+		51DC92D719CA37180006A5DF /* ofxEdsdk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51DC92CD19CA37180006A5DF /* ofxEdsdk.cpp */; };
+		51DC92D819CA3D9A0006A5DF /* DPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC92BA19CA37180006A5DF /* DPP.framework */; };
+		51DC92D919CA3D9A0006A5DF /* DPP.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 51DC92BA19CA37180006A5DF /* DPP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		51DC92DA19CA3D9A0006A5DF /* EDSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC92BB19CA37180006A5DF /* EDSDK.framework */; };
+		51DC92DB19CA3D9A0006A5DF /* EDSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 51DC92BB19CA37180006A5DF /* EDSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AF4DAEDE19C02E9B00114F1F /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF4DAEDC19C02E9B00114F1F /* ofApp.cpp */; };
 		AF4DAEEA19C0315E00114F1F /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4DAEE919C0304A00114F1F /* openFrameworksDebug.a */; };
 		AF4DAF1C19C032D400114F1F /* ofxSyphon.h in Sources */ = {isa = PBXBuildFile; fileRef = AF4DAF0F19C0326800114F1F /* ofxSyphon.h */; };
@@ -60,9 +62,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AF3E1B4E19CA31DA00A8492B /* DPP.framework in CopyFiles */,
-				AF3E1B4F19CA31DA00A8492B /* EDSDK.framework in CopyFiles */,
+				51DC92D919CA3D9A0006A5DF /* DPP.framework in CopyFiles */,
 				AF4DAF2019C0360400114F1F /* Syphon.framework in CopyFiles */,
+				51DC92DB19CA3D9A0006A5DF /* EDSDK.framework in CopyFiles */,
 				AFF41FB419C230E6008EEB42 /* GLUT.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,23 +72,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AF3E1B2819CA319700A8492B /* DPP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DPP.framework; sourceTree = "<group>"; };
-		AF3E1B2919CA319700A8492B /* EDSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDSDK.framework; sourceTree = "<group>"; };
-		AF3E1B2D19CA319700A8492B /* EDSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSDK.h; sourceTree = "<group>"; };
-		AF3E1B2E19CA319700A8492B /* EDSDKErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSDKErrors.h; sourceTree = "<group>"; };
-		AF3E1B2F19CA319700A8492B /* EDSDKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSDKTypes.h; sourceTree = "<group>"; };
-		AF3E1B3519CA319700A8492B /* EdsExamples.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsExamples.cpp; sourceTree = "<group>"; };
-		AF3E1B3619CA319700A8492B /* EdsExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsExamples.h; sourceTree = "<group>"; };
-		AF3E1B3719CA319700A8492B /* EdsException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsException.cpp; sourceTree = "<group>"; };
-		AF3E1B3819CA319700A8492B /* EdsException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsException.h; sourceTree = "<group>"; };
-		AF3E1B3919CA319700A8492B /* EdsStrings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsStrings.cpp; sourceTree = "<group>"; };
-		AF3E1B3A19CA319700A8492B /* EdsStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsStrings.h; sourceTree = "<group>"; };
-		AF3E1B3B19CA319700A8492B /* EdsWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsWrapper.cpp; sourceTree = "<group>"; };
-		AF3E1B3C19CA319700A8492B /* EdsWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsWrapper.h; sourceTree = "<group>"; };
-		AF3E1B3D19CA319700A8492B /* FixedQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedQueue.h; sourceTree = "<group>"; };
-		AF3E1B3E19CA319700A8492B /* ofxEdsdk.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = ofxEdsdk.cpp; sourceTree = "<group>"; };
-		AF3E1B3F19CA319700A8492B /* ofxEdsdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxEdsdk.h; sourceTree = "<group>"; };
-		AF3E1B4019CA319700A8492B /* RateTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateTimer.h; sourceTree = "<group>"; };
+		51DC92BA19CA37180006A5DF /* DPP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DPP.framework; sourceTree = "<group>"; };
+		51DC92BB19CA37180006A5DF /* EDSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDSDK.framework; sourceTree = "<group>"; };
+		51DC92BD19CA37180006A5DF /* EDSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSDK.h; sourceTree = "<group>"; };
+		51DC92BE19CA37180006A5DF /* EDSDKErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSDKErrors.h; sourceTree = "<group>"; };
+		51DC92BF19CA37180006A5DF /* EDSDKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDSDKTypes.h; sourceTree = "<group>"; };
+		51DC92C419CA37180006A5DF /* EdsExamples.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsExamples.cpp; sourceTree = "<group>"; };
+		51DC92C519CA37180006A5DF /* EdsExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsExamples.h; sourceTree = "<group>"; };
+		51DC92C619CA37180006A5DF /* EdsException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsException.cpp; sourceTree = "<group>"; };
+		51DC92C719CA37180006A5DF /* EdsException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsException.h; sourceTree = "<group>"; };
+		51DC92C819CA37180006A5DF /* EdsStrings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsStrings.cpp; sourceTree = "<group>"; };
+		51DC92C919CA37180006A5DF /* EdsStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsStrings.h; sourceTree = "<group>"; };
+		51DC92CA19CA37180006A5DF /* EdsWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdsWrapper.cpp; sourceTree = "<group>"; };
+		51DC92CB19CA37180006A5DF /* EdsWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdsWrapper.h; sourceTree = "<group>"; };
+		51DC92CC19CA37180006A5DF /* FixedQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedQueue.h; sourceTree = "<group>"; };
+		51DC92CD19CA37180006A5DF /* ofxEdsdk.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 4; path = ofxEdsdk.cpp; sourceTree = "<group>"; };
+		51DC92CE19CA37180006A5DF /* ofxEdsdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxEdsdk.h; sourceTree = "<group>"; };
+		51DC92CF19CA37180006A5DF /* RateTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateTimer.h; sourceTree = "<group>"; };
+		51DC92E419CA49020006A5DF /* canonTestDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = canonTestDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF4DAEDC19C02E9B00114F1F /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
 		AF4DAEDD19C02E9B00114F1F /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
 		AF4DAEE319C0303F00114F1F /* CoreOF.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../openFrameworks/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = "<group>"; };
@@ -111,7 +114,6 @@
 		E45BE9770E8CC7DD009D7055 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		E45BE9790E8CC7DD009D7055 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		E4B69B5B0A3A1756003C02F2 /* QuarterFramePerSecondDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuarterFramePerSecondDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -129,24 +131,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF4DAEEA19C0315E00114F1F /* openFrameworksDebug.a in Frameworks */,
+				E45BE9800E8CC7DD009D7055 /* CoreFoundation.framework in Frameworks */,
+				E45BE97E0E8CC7DD009D7055 /* Carbon.framework in Frameworks */,
+				51DC92D019CA37180006A5DF /* DPP.framework in Frameworks */,
+				51DC92D119CA37180006A5DF /* EDSDK.framework in Frameworks */,
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
-				AF3E1B4419CA319700A8492B /* EDSDK.framework in Frameworks */,
 				AF8333DB19C22F4D00942532 /* GLUT.framework in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
-				AF3E1B4319CA319700A8492B /* DPP.framework in Frameworks */,
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
 				AF4DAF1F19C033E900114F1F /* Syphon.framework in Frameworks */,
-				E45BE97E0E8CC7DD009D7055 /* Carbon.framework in Frameworks */,
+				51DC92D819CA3D9A0006A5DF /* DPP.framework in Frameworks */,
 				E45BE97F0E8CC7DD009D7055 /* CoreAudio.framework in Frameworks */,
-				E45BE9800E8CC7DD009D7055 /* CoreFoundation.framework in Frameworks */,
 				E45BE9810E8CC7DD009D7055 /* CoreServices.framework in Frameworks */,
 				E45BE9830E8CC7DD009D7055 /* OpenGL.framework in Frameworks */,
 				E45BE9840E8CC7DD009D7055 /* QuickTime.framework in Frameworks */,
 				E4C2424710CC5A17004149E2 /* AppKit.framework in Frameworks */,
 				E4C2424810CC5A17004149E2 /* Cocoa.framework in Frameworks */,
 				E4C2424910CC5A17004149E2 /* IOKit.framework in Frameworks */,
+				51DC92DA19CA3D9A0006A5DF /* EDSDK.framework in Frameworks */,
 				E7E077E515D3B63C0020DFD4 /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,75 +158,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AF3E1B1419CA319700A8492B /* ofxEdsdk */ = {
+		51DC92B519CA37180006A5DF /* ofxEdsdk */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E1B2419CA319700A8492B /* lib */,
-				AF3E1B3319CA319700A8492B /* src */,
+				51DC92B719CA37180006A5DF /* lib */,
+				51DC92C219CA37180006A5DF /* src */,
 			);
 			name = ofxEdsdk;
-			path =../../../openFrameworks/addons/ofxEdsdk;
+			path = ../../../openFrameworks/addons/ofxEdsdk;
 			sourceTree = "<group>";
 		};
-		AF3E1B2419CA319700A8492B /* lib */ = {
+		51DC92B719CA37180006A5DF /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E1B2519CA319700A8492B /* EDSDK */,
+				51DC92B819CA37180006A5DF /* EDSDK */,
 			);
 			path = lib;
 			sourceTree = "<group>";
 		};
-		AF3E1B2519CA319700A8492B /* EDSDK */ = {
+		51DC92B819CA37180006A5DF /* EDSDK */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E1B2619CA319700A8492B /* Framework */,
-				AF3E1B2B19CA319700A8492B /* Header */,
+				51DC92B919CA37180006A5DF /* Framework */,
+				51DC92BC19CA37180006A5DF /* Header */,
 			);
 			path = EDSDK;
 			sourceTree = "<group>";
 		};
-		AF3E1B2619CA319700A8492B /* Framework */ = {
+		51DC92B919CA37180006A5DF /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E1B2819CA319700A8492B /* DPP.framework */,
-				AF3E1B2919CA319700A8492B /* EDSDK.framework */,
+				51DC92BA19CA37180006A5DF /* DPP.framework */,
+				51DC92BB19CA37180006A5DF /* EDSDK.framework */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
 		};
-		AF3E1B2B19CA319700A8492B /* Header */ = {
+		51DC92BC19CA37180006A5DF /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E1B2D19CA319700A8492B /* EDSDK.h */,
-				AF3E1B2E19CA319700A8492B /* EDSDKErrors.h */,
-				AF3E1B2F19CA319700A8492B /* EDSDKTypes.h */,
+				51DC92BD19CA37180006A5DF /* EDSDK.h */,
+				51DC92BE19CA37180006A5DF /* EDSDKErrors.h */,
+				51DC92BF19CA37180006A5DF /* EDSDKTypes.h */,
 			);
 			path = Header;
 			sourceTree = "<group>";
 		};
-		AF3E1B3319CA319700A8492B /* src */ = {
+		51DC92C219CA37180006A5DF /* src */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E1B3419CA319700A8492B /* EdsWrapper */,
-				AF3E1B3D19CA319700A8492B /* FixedQueue.h */,
-				AF3E1B3E19CA319700A8492B /* ofxEdsdk.cpp */,
-				AF3E1B3F19CA319700A8492B /* ofxEdsdk.h */,
-				AF3E1B4019CA319700A8492B /* RateTimer.h */,
+				51DC92C319CA37180006A5DF /* EdsWrapper */,
+				51DC92CC19CA37180006A5DF /* FixedQueue.h */,
+				51DC92CD19CA37180006A5DF /* ofxEdsdk.cpp */,
+				51DC92CE19CA37180006A5DF /* ofxEdsdk.h */,
+				51DC92CF19CA37180006A5DF /* RateTimer.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
 		};
-		AF3E1B3419CA319700A8492B /* EdsWrapper */ = {
+		51DC92C319CA37180006A5DF /* EdsWrapper */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E1B3519CA319700A8492B /* EdsExamples.cpp */,
-				AF3E1B3619CA319700A8492B /* EdsExamples.h */,
-				AF3E1B3719CA319700A8492B /* EdsException.cpp */,
-				AF3E1B3819CA319700A8492B /* EdsException.h */,
-				AF3E1B3919CA319700A8492B /* EdsStrings.cpp */,
-				AF3E1B3A19CA319700A8492B /* EdsStrings.h */,
-				AF3E1B3B19CA319700A8492B /* EdsWrapper.cpp */,
-				AF3E1B3C19CA319700A8492B /* EdsWrapper.h */,
+				51DC92C419CA37180006A5DF /* EdsExamples.cpp */,
+				51DC92C519CA37180006A5DF /* EdsExamples.h */,
+				51DC92C619CA37180006A5DF /* EdsException.cpp */,
+				51DC92C719CA37180006A5DF /* EdsException.h */,
+				51DC92C819CA37180006A5DF /* EdsStrings.cpp */,
+				51DC92C919CA37180006A5DF /* EdsStrings.h */,
+				51DC92CA19CA37180006A5DF /* EdsWrapper.cpp */,
+				51DC92CB19CA37180006A5DF /* EdsWrapper.h */,
 			);
 			path = EdsWrapper;
 			sourceTree = "<group>";
@@ -304,7 +308,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				AF3E1B1419CA319700A8492B /* ofxEdsdk */,
+				51DC92B519CA37180006A5DF /* ofxEdsdk */,
 				AF4DAEEB19C0326700114F1F /* ofxSyphon */,
 			);
 			name = addons;
@@ -358,7 +362,7 @@
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				E45BE5980E8CC70C009D7055 /* frameworks */,
-				E4B69B5B0A3A1756003C02F2 /* QuarterFramePerSecondDebug.app */,
+				51DC92E419CA49020006A5DF /* canonTestDebug.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -384,9 +388,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E4B69B5A0A3A1756003C02F2 /* QuarterFramePerSecond */ = {
+		E4B69B5A0A3A1756003C02F2 /* canonTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "QuarterFramePerSecond" */;
+			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "canonTest" */;
 			buildPhases = (
 				E4B69B580A3A1756003C02F2 /* Sources */,
 				E4B69B590A3A1756003C02F2 /* Frameworks */,
@@ -397,9 +401,9 @@
 			);
 			dependencies = (
 			);
-			name = QuarterFramePerSecond;
+			name = canonTest;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* QuarterFramePerSecondDebug.app */;
+			productReference = 51DC92E419CA49020006A5DF /* canonTestDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -409,7 +413,7 @@
 			isa = PBXProject;
 			attributes = {
 			};
-			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "QuarterFramePerSecond" */;
+			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "canonTest" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -430,7 +434,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				E4B69B5A0A3A1756003C02F2 /* QuarterFramePerSecond */,
+				E4B69B5A0A3A1756003C02F2 /* canonTest */,
 			);
 		};
 /* End PBXProject section */
@@ -457,7 +461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -f $OF_PATH/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";";
+			shellScript = "cp -f $OF_PATH/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\nmkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -466,16 +470,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF3E1B4819CA319700A8492B /* EdsWrapper.cpp in Sources */,
 				AF4DAF1D19C0339B00114F1F /* ofxSyphonServer.h in Sources */,
+				51DC92D319CA37180006A5DF /* EdsExamples.cpp in Sources */,
 				AF4DAF1E19C0339B00114F1F /* ofxSyphonServer.mm in Sources */,
-				AF3E1B4519CA319700A8492B /* EdsExamples.cpp in Sources */,
-				AF3E1B4719CA319700A8492B /* EdsStrings.cpp in Sources */,
 				AF4DAF1C19C032D400114F1F /* ofxSyphon.h in Sources */,
+				51DC92D419CA37180006A5DF /* EdsException.cpp in Sources */,
 				AF4DAEDE19C02E9B00114F1F /* ofApp.cpp in Sources */,
-				AF3E1B4919CA319700A8492B /* ofxEdsdk.cpp in Sources */,
+				51DC92D719CA37180006A5DF /* ofxEdsdk.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
-				AF3E1B4619CA319700A8492B /* EdsException.cpp in Sources */,
+				51DC92D619CA37180006A5DF /* EdsWrapper.cpp in Sources */,
+				51DC92D519CA37180006A5DF /* EdsStrings.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +510,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
@@ -540,6 +545,7 @@
 					"$(OF_CORE_HEADERS)",
 					src,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
@@ -568,14 +574,15 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"<Multiple",
 					"values>",
 					"$(OF_PATH)/export/osx/Frameworks",
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)Debug";
-				SDKROOT = macosx10.9;
+				PRODUCT_NAME = canonTestDebug;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -598,14 +605,15 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"<Multiple",
 					"values>",
 					"$(OF_PATH)/export/osx/Frameworks",
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.9;
+				PRODUCT_NAME = canonTest;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -613,7 +621,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "QuarterFramePerSecond" */ = {
+		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "canonTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B4E0A3A1720003C02F2 /* Debug */,
@@ -622,7 +630,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "QuarterFramePerSecond" */ = {
+		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "canonTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B600A3A1757003C02F2 /* Debug */,
