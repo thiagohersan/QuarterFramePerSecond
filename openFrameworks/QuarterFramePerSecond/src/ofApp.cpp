@@ -45,6 +45,7 @@ void ofApp::setup(){
         for(int x=0; x<mCanvas.getWidth(); x++) {
             int cx = (x/16+cy)%2;
             mCanvas.setColor(x, y, ofColor(cx*255));
+            mCanvas.setColor(x, y, ofColor(0));
         }
     }
     mCanvas.reloadTexture();
@@ -131,8 +132,9 @@ void ofApp::update(){
         ofFbo tempFbo;
         tempFbo.allocate(mCanvas.width, mCanvas.height);
         tempFbo.begin();
+        ofBackground(0);
         ofSetColor(ofColor(abs(flashValue)));
-        mFoto.draw((mFoto.width-tempFbo.getWidth())/2, (mFoto.height-tempFbo.getHeight())/2);
+        mFoto.draw(0,0);
         tempFbo.end();
 
         tempFbo.readToPixels(mCanvas.getPixelsRef());
