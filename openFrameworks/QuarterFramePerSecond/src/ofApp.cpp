@@ -59,6 +59,8 @@ void ofApp::setup(){
 
     nextFlash = ofGetElapsedTimeMillis()+500;
     mState = WAITING;
+
+    fiespMask.loadImage("SP_Urban_2014_MASK.png");
 }
 
 //--------------------------------------------------------------
@@ -67,7 +69,7 @@ void ofApp::update(){
     if (mState == WAITING) {
         if (ofGetElapsedTimeMillis() > nextFlash) {
             //reload a pic
-            mFoto.loadImage("foto"+ofToString((int)ofRandom(4))+ ".jpg");
+            mFoto.loadImage("foto"+ofToString((int)ofRandom(4)%2)+ ".jpg");
             float sFactor = max((float)(mCanvas.width)/mFoto.width, (float)(mCanvas.height)/mFoto.height);
             mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
 
@@ -164,6 +166,9 @@ void ofApp::draw(){
     mCanvas.draw(400,14);
     mPanels.draw(400,259);
     ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate()), 10,10, ofColor(255,0,255), ofColor(255,255,0));
+
+    fiespMask.draw(0,0);
+    mPanels.draw(37,259);
 }
 
 void ofApp::toPanels(ofImage &mCanvas, ofImage &mPanels){
@@ -182,7 +187,7 @@ void ofApp::toPanels(ofImage &mCanvas, ofImage &mPanels){
         // left/right
         int gapSize = (int)((0.0-74.0)/mPanels.getHeight()*y+74.0);
         int leftoverPixels = (int)((61.0-9.0)/mPanels.getHeight()*y+9.0);
-        for(int x=0; x<leftoverPixels; x++){
+        for(int x=0; x<=leftoverPixels; x++){
             mPanels.setColor(mPanels.getWidth()/2+rowWidthHalf+1+x+gapSize, y, mCanvas.getColor(mPanels.getWidth()/2+rowWidthHalf+1+x, y));
             mPanels.setColor(mPanels.getWidth()/2-rowWidthHalf-1-x-gapSize, y, mCanvas.getColor(mPanels.getWidth()/2-rowWidthHalf-1-x, y));
         }

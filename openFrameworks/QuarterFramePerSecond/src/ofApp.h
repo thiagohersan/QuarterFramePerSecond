@@ -39,6 +39,7 @@ class ofApp : public ofBaseApp{
         vector<ofVec2f> pixelsToFade;
         vector<ofColor> colorsToRand;
         ofImage mFoto;
+        ofImage fiespMask;
 
         State mState;
 };
