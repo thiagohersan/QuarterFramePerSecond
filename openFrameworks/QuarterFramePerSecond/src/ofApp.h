@@ -23,6 +23,8 @@ class ofApp : public ofBaseApp{
         ofxSyphonServer syphonServer;
         ofPath pathLeft, pathCenter, pathRight, newPathRight, newPathLeft;
         ofImage mCanvas, mPanels;
+        vector<string> fotoFileNames;
+        int currentFoto;
 
         void toPanels(ofImage &mCanvas, ofImage &mPanels);
         void findSimilarColors(ofColor &c, ofImage &p);

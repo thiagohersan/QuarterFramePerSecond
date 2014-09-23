@@ -61,6 +61,15 @@ void ofApp::setup(){
     mState = WAITING;
 
     fiespMask.loadImage("SP_Urban_MASK_025.png");
+
+    ofDirectory fDir("");
+    fDir.listDir();
+    for(int i=0; i<fDir.numFiles(); i++){
+        if(!(fDir.getPath(i).compare(0, 4, string("foto")) || fDir.getPath(i).compare(fDir.getPath(i).size()-4, 4, string(".jpg")))){
+            fotoFileNames.push_back(fDir.getPath(i));
+        }
+    }
+    currentFoto = 0;
 }
 
 //--------------------------------------------------------------
@@ -69,7 +78,8 @@ void ofApp::update(){
     if (mState == WAITING) {
         if (ofGetElapsedTimeMillis() > nextFlash) {
             //reload a pic
-            mFoto.loadImage("foto"+ofToString((int)ofRandom(4)%2)+ ".jpg");
+            mFoto.loadImage(fotoFileNames.at(currentFoto));
+            currentFoto = (currentFoto+1)%fotoFileNames.size();
             float sFactor = max((float)(mCanvas.width)/mFoto.width, (float)(mCanvas.height)/mFoto.height);
             mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
 
