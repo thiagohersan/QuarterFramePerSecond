@@ -60,7 +60,7 @@ void ofApp::setup(){
     nextFlash = ofGetElapsedTimeMillis()+500;
     mState = WAITING;
 
-    fiespMask.loadImage("SP_Urban_2014_MASK.png");
+    fiespMask.loadImage("SP_Urban_MASK_025.png");
 }
 
 //--------------------------------------------------------------
