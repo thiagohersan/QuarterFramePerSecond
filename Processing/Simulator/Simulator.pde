@@ -41,11 +41,11 @@ void draw() {
 
   if (fv > 0.0) {
     fv = min(fv+180.0, 255.0);
-    if ((fv >= 255) && (stayWhiteCount>8)) fv = -255.0;
+    if ((fv >= 255) && (stayWhiteCount>4)) fv = -255.0;
     else if (fv >= 255) stayWhiteCount++;
   }
   else if (fv < 0.0) {
-    fv = min(fv+20.0, 0.0);
+    fv = min(fv+60.0, 0.0);
   }
 
   background(0);
