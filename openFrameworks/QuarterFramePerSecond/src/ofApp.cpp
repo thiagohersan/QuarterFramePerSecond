@@ -5,6 +5,8 @@ void ofApp::setup(){
     syphonServer.setName("Syphon Output");
     ofEnableSmoothing();
     ofSetFrameRate(60);
+    mCamera.setup(); //turn on de Canon via USB
+
 
     // lol
     pathLeft.moveTo(37,259);
@@ -74,14 +76,18 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    mCamera.update();
+
+    //load picture from canon if its available
+    if(mCamera.isPhotoNew()) {
+        mFoto = mCamera.getPhotoPixels();
+        float sFactor = max((float)(mCanvas.width)/mFoto.width, (float)(mCanvas.height)/mFoto.height);
+        mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
+    }
+    
     // state transitions
     if (mState == WAITING) {
         if (ofGetElapsedTimeMillis() > nextFlash) {
-            //reload a pic
-            mFoto.loadImage(fotoFileNames.at(currentFoto));
-            currentFoto = (currentFoto+1)%fotoFileNames.size();
-            float sFactor = max((float)(mCanvas.width)/mFoto.width, (float)(mCanvas.height)/mFoto.height);
-            mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
 
             // first color to Fade
             ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
@@ -91,20 +97,25 @@ void ofApp::update(){
             mState = FLASHING_IN;
             flashValue = 1.0;
             stayWhiteCount = 0;
+            
+
         }
     }
     else if (mState == FLASHING_IN) {
+
         flashValue = min(flashValue+50.0, 255.0);
         if ((flashValue >= 255) && (stayWhiteCount>4)) {
             stayWhiteCount = 0;
             flashValue = -255.0;
             mState = FLASHING_OUT;
+
         }
         else if (flashValue >= 255) {
             stayWhiteCount++;
         }
     }
     else if (mState == FLASHING_OUT) {
+
         flashValue = min(flashValue+60.0, 0.0);
         if (flashValue >= 0.0) {
             flashValue = 0.0;
@@ -132,6 +143,8 @@ void ofApp::update(){
         if (flashValue >= 0.0) {
             mState = WAITING;
             nextFlash = ofGetElapsedTimeMillis()+2000;
+            mCamera.takePhoto();
+
         }
     }
 
@@ -150,11 +163,12 @@ void ofApp::update(){
         tempFbo.end();
 
         tempFbo.readToPixels(mCanvas.getPixelsRef());
-        mCanvas.reloadTexture();
+      //  mCanvas.reloadTexture();
     }
+    
+
 
     toPanels(mCanvas, mPanels);
-    syphonServer.publishScreen();
 }
 
 //--------------------------------------------------------------
@@ -178,7 +192,12 @@ void ofApp::draw(){
     ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate()), 10,10, ofColor(255,0,255), ofColor(255,255,0));
 
     fiespMask.draw(0,0);
+    
+    mFoto.draw(200, 0);
     mPanels.draw(37,259);
+    
+    syphonServer.publishScreen();
+
 }
 
 void ofApp::toPanels(ofImage &mCanvas, ofImage &mPanels){
@@ -243,7 +262,7 @@ bool ofApp::fadeImage(ofImage &p) {
         findSimilarColors(rColor, p);
     }
 
-    return (colorsToRand.size() > 200);
+    return (colorsToRand.size() > 1000);
 }
 
 
