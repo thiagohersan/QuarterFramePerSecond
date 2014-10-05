@@ -37,8 +37,10 @@ void ofApp::setup(){
     newPathRight.lineTo(193,426);
     newPathRight.close();
 
-    mCanvas.allocate(214, 167, OF_IMAGE_COLOR);
-    mPanels.allocate(214, 167, OF_IMAGE_COLOR);
+    mPanelSize = ofRectangle(0,0, 215, 168);
+
+    mCanvas.allocate(mPanelSize.width, mPanelSize.height, OF_IMAGE_COLOR);
+    mPanels.allocate(mPanelSize.width, mPanelSize.height, OF_IMAGE_COLOR);
 
     for(int y=0; y<mCanvas.getHeight(); y++) {
         int cy = (y/16)%2;
@@ -182,7 +184,7 @@ void ofApp::draw(){
 }
 
 void ofApp::toPanels(ofImage &mCanvas, ofImage &mPanels){
-    if(!(mCanvas.getWidth() == 214 && mCanvas.getHeight() == 167))
+    if(!(mCanvas.getWidth() >= mPanelSize.width && mCanvas.getHeight() >= mPanelSize.height))
         return;
 
     for(int y=0; y<mPanels.getHeight(); y++){

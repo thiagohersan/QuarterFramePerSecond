@@ -23,6 +23,7 @@ class ofApp : public ofBaseApp{
         ofxSyphonServer syphonServer;
         ofPath pathLeft, pathCenter, pathRight, newPathRight, newPathLeft;
         ofImage mCanvas, mPanels;
+        ofRectangle mPanelSize;
         vector<string> fotoFileNames;
         int currentFoto;
 
