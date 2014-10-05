@@ -6,37 +6,6 @@ void ofApp::setup(){
     ofEnableSmoothing();
     ofSetFrameRate(60);
 
-    // lol
-    pathLeft.moveTo(37,259);
-    pathLeft.lineTo(46,259);
-    pathLeft.lineTo(98,426);
-    pathLeft.lineTo(37,426);
-    pathLeft.close();
-
-    pathCenter.moveTo(120,259);
-    pathCenter.lineTo(171,259);
-    pathCenter.lineTo(192,426);
-    pathCenter.lineTo(99,426);
-    pathCenter.close();
-
-    pathRight.moveTo(245,259);
-    pathRight.lineTo(251,259);
-    pathRight.lineTo(251,426);
-    pathRight.lineTo(193,426);
-    pathRight.close();
-
-    newPathLeft.moveTo(110,259);
-    newPathLeft.lineTo(119,259);
-    newPathLeft.lineTo(98,426);
-    newPathLeft.lineTo(37,426);
-    newPathLeft.close();
-
-    newPathRight.moveTo(172,259);
-    newPathRight.lineTo(178,259);
-    newPathRight.lineTo(251,426);
-    newPathRight.lineTo(193,426);
-    newPathRight.close();
-
     mPanelSize = ofRectangle(0,0, 215, 168);
 
     mCanvas.allocate(mPanelSize.width, mPanelSize.height, OF_IMAGE_COLOR);
@@ -163,17 +132,6 @@ void ofApp::update(){
 void ofApp::draw(){
     ofBackground(0);
     ofSetColor(255);
-
-    pathLeft.draw();
-    pathCenter.draw();
-    pathRight.draw();
-
-    ofPushMatrix();
-    ofTranslate(0,-200);
-    newPathLeft.draw();
-    pathCenter.draw();
-    newPathRight.draw();
-    ofPopMatrix();
 
     mCanvas.draw(400,14);
     mPanels.draw(400,259);

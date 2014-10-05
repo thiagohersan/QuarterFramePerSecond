@@ -21,7 +21,6 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
         ofxSyphonServer syphonServer;
-        ofPath pathLeft, pathCenter, pathRight, newPathRight, newPathLeft;
         ofImage mCanvas, mPanels;
         ofRectangle mPanelSize;
         vector<string> fotoFileNames;
