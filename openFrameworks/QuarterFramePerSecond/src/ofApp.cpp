@@ -11,16 +11,6 @@ void ofApp::setup(){
     mCanvas.allocate(mPanelSize.width, mPanelSize.height, OF_IMAGE_COLOR);
     mPanels.allocate(mPanelSize.width, mPanelSize.height, OF_IMAGE_COLOR);
 
-    for(int y=0; y<mCanvas.getHeight(); y++) {
-        int cy = (y/16)%2;
-        for(int x=0; x<mCanvas.getWidth(); x++) {
-            int cx = (x/16+cy)%2;
-            mCanvas.setColor(x, y, ofColor(cx*255));
-            mCanvas.setColor(x, y, ofColor(0));
-        }
-    }
-    mCanvas.reloadTexture();
-
     for(int y=0; y<mPanels.getHeight(); y++) {
         for(int x=0; x<mPanels.getWidth(); x++) {
             mPanels.setColor(x, y, ofColor(0));
