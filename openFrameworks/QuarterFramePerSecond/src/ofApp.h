@@ -23,8 +23,8 @@ class ofApp : public ofBaseApp{
         ofxSyphonServer syphonServer;
         ofxEdsdk::Camera mCamera;
 
-        ofImage mCanvas, mPanels;
-        ofRectangle mPanelSize;
+        ofImage mCanvas, mPanels, panelsMask;
+        ofRectangle mPanelPositionAndSize;
 
         vector<string> fotoFileNames;
         int currentFoto;

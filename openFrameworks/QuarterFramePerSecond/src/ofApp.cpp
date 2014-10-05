@@ -6,17 +6,14 @@ void ofApp::setup(){
     ofEnableSmoothing();
     ofSetFrameRate(60);
 
-    mPanelSize = ofRectangle(0,0, 215, 168);
+    mPanelPositionAndSize = ofRectangle(37,259, 215, 168);
 
-    mCanvas.allocate(mPanelSize.width, mPanelSize.height, OF_IMAGE_COLOR);
-    mPanels.allocate(mPanelSize.width, mPanelSize.height, OF_IMAGE_COLOR);
+    mCanvas.allocate(mPanelPositionAndSize.width, mPanelPositionAndSize.height, OF_IMAGE_COLOR);
+    mPanels.allocate(mPanelPositionAndSize.width, mPanelPositionAndSize.height, OF_IMAGE_COLOR);
+    mPanels.setColor(ofColor(0));
 
-    for(int y=0; y<mPanels.getHeight(); y++) {
-        for(int x=0; x<mPanels.getWidth(); x++) {
-            mPanels.setColor(x, y, ofColor(0));
-        }
-    }
-    mPanels.reloadTexture();
+    panelsMask.loadImage("SP_Urban_MASK_025.png");
+    panelsMask.crop(mPanelPositionAndSize.x, mPanelPositionAndSize.y, mPanelPositionAndSize.width, mPanelPositionAndSize.height);
 
     nextFlash = ofGetElapsedTimeMillis()+500;
     mState = WAITING;
@@ -111,8 +108,9 @@ void ofApp::update(){
         tempFbo.end();
 
         tempFbo.readToPixels(mCanvas.getPixelsRef());
-        mCanvas.reloadTexture();
     }
+
+    mCanvas.reloadTexture();
 
     toPanels(mCanvas, mPanels);
     syphonServer.publishScreen();
@@ -128,28 +126,26 @@ void ofApp::draw(){
     ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate()), 10,10, ofColor(255,0,255), ofColor(255,255,0));
 
     fiespMask.draw(0,0);
-    mPanels.draw(37,259);
+    mPanels.draw(mPanelPositionAndSize.x,mPanelPositionAndSize.y);
 }
 
 void ofApp::toPanels(ofImage &mCanvas, ofImage &mPanels){
-    if(!(mCanvas.getWidth() >= mPanelSize.width && mCanvas.getHeight() >= mPanelSize.height))
+    if((mCanvas.getWidth() < mPanels.getWidth()) || (mCanvas.getHeight() < mPanels.getHeight()))
         return;
 
     for(int y=0; y<mPanels.getHeight(); y++){
-        int rowWidthHalf = (int)((93.0-51.0)/mPanels.getHeight()*y/2.0+25.0);
-        int rowCenterPixel = y*mPanels.getWidth()+mPanels.getWidth()/2;
-        // center
-        for(int x=0; x<=rowWidthHalf; x++){
-            mPanels.setColor(mPanels.getWidth()/2+x, y, mCanvas.getColor(mPanels.getWidth()/2+x, y));
-            mPanels.setColor(mPanels.getWidth()/2-x, y, mCanvas.getColor(mPanels.getWidth()/2-x, y));
-        }
-
-        // left/right
-        int gapSize = (int)((0.0-74.0)/mPanels.getHeight()*y+74.0);
-        int leftoverPixels = (int)((61.0-9.0)/mPanels.getHeight()*y+9.0);
-        for(int x=0; x<=leftoverPixels; x++){
-            mPanels.setColor(mPanels.getWidth()/2+rowWidthHalf+1+x+gapSize, y, mCanvas.getColor(mPanels.getWidth()/2+rowWidthHalf+1+x, y));
-            mPanels.setColor(mPanels.getWidth()/2-rowWidthHalf-1-x-gapSize, y, mCanvas.getColor(mPanels.getWidth()/2-rowWidthHalf-1-x, y));
+        int leftOffset=0, rightOffset=0;
+        for(int x=0; x<=mPanels.getWidth()/2; x++){
+            // left
+            if(panelsMask.getColor(mPanels.width/2-x, y) == ofColor::white){
+                mPanels.setColor(mPanels.getWidth()/2-x, y, mCanvas.getColor(mCanvas.getWidth()/2-leftOffset, y));
+                leftOffset++;
+            }
+            // right
+            if(panelsMask.getColor(mPanels.width/2+x, y) == ofColor::white){
+                mPanels.setColor(mPanels.getWidth()/2+x, y, mCanvas.getColor(mCanvas.getWidth()/2+rightOffset, y));
+                rightOffset++;
+            }
         }
     }
     mPanels.reloadTexture();
