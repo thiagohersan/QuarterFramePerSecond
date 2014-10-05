@@ -21,16 +21,17 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
         ofxSyphonServer syphonServer;
+        ofxEdsdk::Camera mCamera;
+
         ofImage mCanvas, mPanels;
         ofRectangle mPanelSize;
+
         vector<string> fotoFileNames;
         int currentFoto;
 
         void toPanels(ofImage &mCanvas, ofImage &mPanels);
         void findSimilarColors(ofColor &c, ofImage &p);
         bool fadeImage(ofImage &p);
-
-        ofxEdsdk::Camera mCamera;
 
         enum State { WAITING, FLASHING_IN, FLASHING_OUT, FADING_PICTURE_IN, FADING_PICTURE_OUT, CLEARING_PICTURE };
 
