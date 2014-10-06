@@ -109,7 +109,6 @@ void ofApp::update(){
 
         tempFbo.readToPixels(mCanvas.getPixelsRef());
     }
-
     mCanvas.reloadTexture();
 
     toPanels(mCanvas, mPanels);
@@ -129,26 +128,36 @@ void ofApp::draw(){
     mPanels.draw(mPanelPositionAndSize.x,mPanelPositionAndSize.y);
 }
 
-void ofApp::toPanels(ofImage &mCanvas, ofImage &mPanels){
-    if((mCanvas.getWidth() < mPanels.getWidth()) || (mCanvas.getHeight() < mPanels.getHeight()))
+void ofApp::toPanels(ofImage &canvas, ofImage &panels){
+    if((canvas.getWidth() < panels.getWidth()) || (canvas.getHeight() < panels.getHeight()))
         return;
 
-    for(int y=0; y<mPanels.getHeight(); y++){
+    for(int y=0; y<panels.getHeight(); y++){
         int leftOffset=0, rightOffset=0;
-        for(int x=0; x<=mPanels.getWidth()/2; x++){
+        for(int x=0; x<=panels.getWidth()/2; x++){
             // left
-            if(panelsMask.getColor(mPanels.width/2-x, y) == ofColor::white){
-                mPanels.setColor(mPanels.getWidth()/2-x, y, mCanvas.getColor(mCanvas.getWidth()/2-leftOffset, y));
+            if(panelsMask.getColor(panels.width/2-x, y) == ofColor::white){
+                panels.setColor(panels.getWidth()/2-x, y, canvas.getColor(canvas.getWidth()/2-leftOffset, y));
                 leftOffset++;
             }
             // right
-            if(panelsMask.getColor(mPanels.width/2+x, y) == ofColor::white){
-                mPanels.setColor(mPanels.getWidth()/2+x, y, mCanvas.getColor(mCanvas.getWidth()/2+rightOffset, y));
+            if(panelsMask.getColor(panels.width/2+x, y) == ofColor::white){
+                panels.setColor(panels.getWidth()/2+x, y, canvas.getColor(canvas.getWidth()/2+rightOffset, y));
                 rightOffset++;
             }
         }
     }
-    mPanels.reloadTexture();
+    panels.reloadTexture();
+}
+
+void ofApp::drawChessboard(ofImage& canvas){
+    for(int y=0; y<canvas.getHeight(); y++) {
+        int cy = (y/16)%2;
+        for(int x=0; x<canvas.getWidth(); x++) {
+            int cx = (x/16+cy)%2;
+            canvas.setColor(x, y, ofColor(cx*255));
+        }
+    }
 }
 
 void ofApp::findSimilarColors(ofColor &c, ofImage &p) {

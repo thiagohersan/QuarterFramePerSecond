@@ -30,6 +30,7 @@ class ofApp : public ofBaseApp{
         int currentFoto;
 
         void toPanels(ofImage &mCanvas, ofImage &mPanels);
+        void drawChessboard(ofImage &mCanvas);
         void findSimilarColors(ofColor &c, ofImage &p);
         bool fadeImage(ofImage &p);
 
