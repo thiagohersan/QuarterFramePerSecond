@@ -262,7 +262,7 @@ bool ofApp::fadeImage(ofImage &p) {
         findSimilarColors(rColor, p);
     }
 
-    return (colorsToRand.size() > 1000);
+    return (colorsToRand.size() > 100 );
 }
 
 
