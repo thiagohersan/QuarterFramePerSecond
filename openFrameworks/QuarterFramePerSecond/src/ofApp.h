@@ -34,7 +34,8 @@ class ofApp : public ofBaseApp{
         void findSimilarColors(ofColor &c, ofImage &p);
         bool fadeImage(ofImage &p);
 
-        enum State { WAITING, FLASHING_IN, FLASHING_OUT, FADING_PICTURE_IN, FADING_PICTURE_OUT, CLEARING_PICTURE };
+        enum State { INITIAL, WAITING, WAITING_FOR_PICTURE, FLASHING_IN,
+            FLASHING_OUT, FADING_PICTURE_IN, FADING_PICTURE_OUT, CLEARING_PICTURE };
 
         float flashValue;
         long long nextFlash;

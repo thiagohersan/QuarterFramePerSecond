@@ -2,9 +2,12 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    syphonServer.setName("Syphon Output");
     ofEnableSmoothing();
     ofSetFrameRate(60);
+    ofSetLogLevel(OF_LOG_NOTICE);
+
+    syphonServer.setName("Syphon Output");
+    mCamera.setup();
 
     mPanelPositionAndSize = ofRectangle(37,259, 215, 168);
 
@@ -16,7 +19,7 @@ void ofApp::setup(){
     panelsMask.crop(mPanelPositionAndSize.x, mPanelPositionAndSize.y, mPanelPositionAndSize.width, mPanelPositionAndSize.height);
 
     nextFlash = ofGetElapsedTimeMillis()+500;
-    mState = WAITING;
+    mState = INITIAL;
 
     fiespMask.loadImage("SP_Urban_MASK_025.png");
 
@@ -32,8 +35,15 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    mCamera.update();
+
     // state transitions
-    if (mState == WAITING) {
+    if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > 1500)) {
+        mCamera.focusFrame();
+        mState = WAITING;
+    }
+    else if (mState == WAITING) {
+        /*
         if (ofGetElapsedTimeMillis() > nextFlash) {
             //reload a pic
             mFoto.loadImage(fotoFileNames.at(currentFoto));
@@ -49,6 +59,13 @@ void ofApp::update(){
             mState = FLASHING_IN;
             flashValue = 1.0;
             stayWhiteCount = 0;
+        }
+        */
+        if(mCamera.isFrameFocused()){
+            mState = FLASHING_IN;
+            flashValue = 1.0;
+            stayWhiteCount = 0;
+            mCamera.takeFocusedPhoto();
         }
     }
     else if (mState == FLASHING_IN) {
@@ -66,7 +83,22 @@ void ofApp::update(){
         flashValue = min(flashValue+60.0, 0.0);
         if (flashValue >= 0.0) {
             flashValue = 0.0;
+            mState = WAITING_FOR_PICTURE;
+        }
+    }
+    else if (mState == WAITING_FOR_PICTURE) {
+        if(mCamera.isPhotoNew()){
+            mFoto.allocate(mCamera.getWidth(), mCamera.getHeight(), OF_IMAGE_COLOR);
+            mFoto = mCamera.getPhotoPixels();
+            mFoto.reloadTexture();
+            float sFactor = max((float)(mCanvas.width)/mFoto.width, (float)(mCanvas.height)/mFoto.height);
+            mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
+            // first color to Fade
+            ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
+            //find a color to fade
+            findSimilarColors(rColor, mFoto);
             mState = FADING_PICTURE_IN;
+            mCamera.focusFrame();
         }
     }
     else if (mState == FADING_PICTURE_IN) {
@@ -94,7 +126,8 @@ void ofApp::update(){
     }
 
     // update images, drawings, graphics, etc...
-    if ((mState == WAITING) || (mState == FLASHING_IN) || (mState == FLASHING_OUT)) {
+    if ((mState == INITIAL) || (mState == WAITING) || (mState == FLASHING_IN) ||
+        (mState == FLASHING_OUT) || (mState == WAITING_FOR_PICTURE)) {
         mCanvas.setColor(ofColor(abs(flashValue)));
     }
     else if ((mState == FADING_PICTURE_IN) || (mState == FADING_PICTURE_OUT) || (mState == CLEARING_PICTURE)) {
