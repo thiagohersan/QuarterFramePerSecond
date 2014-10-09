@@ -148,16 +148,23 @@ void ofApp::toPanels(ofImage &canvas, ofImage &panels){
 
     for(int y=0; y<panels.getHeight(); y++){
         int leftOffset=0, rightOffset=0;
+        int gapSize = max(0, (int)((0.0-74.0)/mPanels.getHeight()*y+72.0));
+
         for(int x=0; x<=panels.getWidth()/2; x++){
             // left
             if(panelsMask.getColor(panels.width/2-x, y) == ofColor::white){
-                panels.setColor(panels.getWidth()/2-x, y, canvas.getColor(canvas.getWidth()/2-leftOffset, y));
-                leftOffset++;
+                panels.setColor(panels.getWidth()/2-x, y, canvas.getColor(canvas.getWidth()/2-x+(leftOffset*gapSize), y));
             }
+            else{
+                leftOffset = 1;
+            }
+
             // right
             if(panelsMask.getColor(panels.width/2+x, y) == ofColor::white){
-                panels.setColor(panels.getWidth()/2+x, y, canvas.getColor(canvas.getWidth()/2+rightOffset, y));
-                rightOffset++;
+                panels.setColor(panels.getWidth()/2+x, y, canvas.getColor(canvas.getWidth()/2+x-(rightOffset*gapSize), y));
+            }
+            else{
+                rightOffset = 1;
             }
         }
     }
