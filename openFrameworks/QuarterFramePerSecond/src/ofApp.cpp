@@ -22,15 +22,6 @@ void ofApp::setup(){
     mState = INITIAL;
 
     fiespMask.loadImage("SP_Urban_MASK_025.png");
-
-    ofDirectory fDir("");
-    fDir.listDir();
-    for(int i=0; i<fDir.numFiles(); i++){
-        if(!(fDir.getPath(i).compare(0, 4, string("foto")) || fDir.getPath(i).compare(fDir.getPath(i).size()-4, 4, string(".jpg")))){
-            fotoFileNames.push_back(fDir.getPath(i));
-        }
-    }
-    currentFoto = 0;
 }
 
 //--------------------------------------------------------------

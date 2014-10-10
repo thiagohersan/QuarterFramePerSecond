@@ -26,9 +26,6 @@ class ofApp : public ofBaseApp{
         ofImage mCanvas, mPanels, panelsMask;
         ofRectangle mPanelPositionAndSize;
 
-        vector<string> fotoFileNames;
-        int currentFoto;
-
         void toPanels(ofImage &mCanvas, ofImage &mPanels);
         void drawChessboard(ofImage &mCanvas);
         void findSimilarColors(ofColor &c, ofImage &p);
