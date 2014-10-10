@@ -8,7 +8,9 @@ class ofApp : public ofBaseApp{
 	public:
 		void setup();
 		void update();
+        void update__();
 		void draw();
+        void draw__();
 		
 		void keyPressed(int key);
 		void keyReleased(int key);

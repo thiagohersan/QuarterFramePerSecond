@@ -33,6 +33,45 @@ void ofApp::setup(){
     currentFoto = 0;
 }
 
+void ofApp::update__(){
+    mCamera.update();
+
+    if(!mFoto.isAllocated()){
+        mFoto.allocate(200,200, OF_IMAGE_COLOR);
+        mFoto.setColor(ofColor(0,0,128));
+        mFoto.reloadTexture();
+    }
+
+    // state transitions
+    if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > 1500)) {
+        mCamera.focusFrame();
+        mState = WAITING;
+    }
+    else if (mState == WAITING) {
+        if(mCamera.isFrameFocused()){
+            mCamera.takeFocusedPhoto();
+            mState = WAITING_FOR_PICTURE;
+        }
+    }
+    else if (mState == WAITING_FOR_PICTURE) {
+        if(mCamera.isPhotoNew()){
+            mFoto.allocate(mCamera.getWidth(), mCamera.getHeight(), OF_IMAGE_COLOR);
+            mFoto = mCamera.getPhotoPixels();
+            float sFactor = min((float)(ofGetWidth()-40)/mFoto.width, (float)(ofGetHeight()-40)/mFoto.height);
+            mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
+            mFoto.reloadTexture();
+            mCamera.focusFrame();
+            mState = WAITING;
+        }
+    }
+    
+}
+void ofApp::draw__(){
+    ofBackground(0);
+    ofSetColor(255);
+    mFoto.draw(20,20);
+}
+
 //--------------------------------------------------------------
 void ofApp::update(){
     mCamera.update();
