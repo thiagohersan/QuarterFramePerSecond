@@ -33,45 +33,6 @@ void ofApp::setup(){
     currentFoto = 0;
 }
 
-void ofApp::update__(){
-    mCamera.update();
-
-    if(!mFoto.isAllocated()){
-        mFoto.allocate(200,200, OF_IMAGE_COLOR);
-        mFoto.setColor(ofColor(0,0,128));
-        mFoto.reloadTexture();
-    }
-
-    // state transitions
-    if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > 1500)) {
-        mCamera.focusFrame();
-        mState = WAITING;
-    }
-    else if (mState == WAITING) {
-        if(mCamera.isFrameFocused()){
-            mCamera.takeFocusedPhoto();
-            mState = WAITING_FOR_PICTURE;
-        }
-    }
-    else if (mState == WAITING_FOR_PICTURE) {
-        if(mCamera.isPhotoNew()){
-            mFoto.allocate(mCamera.getWidth(), mCamera.getHeight(), OF_IMAGE_COLOR);
-            mFoto = mCamera.getPhotoPixels();
-            float sFactor = min((float)(ofGetWidth()-40)/mFoto.width, (float)(ofGetHeight()-40)/mFoto.height);
-            mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
-            mFoto.reloadTexture();
-            mCamera.focusFrame();
-            mState = WAITING;
-        }
-    }
-    
-}
-void ofApp::draw__(){
-    ofBackground(0);
-    ofSetColor(255);
-    mFoto.draw(20,20);
-}
-
 //--------------------------------------------------------------
 void ofApp::update(){
     mCamera.update();
@@ -82,25 +43,8 @@ void ofApp::update(){
         mState = WAITING;
     }
     else if (mState == WAITING) {
-        /*
-        if (ofGetElapsedTimeMillis() > nextFlash) {
-            //reload a pic
-            mFoto.loadImage(fotoFileNames.at(currentFoto));
-            currentFoto = (currentFoto+1)%fotoFileNames.size();
-            float sFactor = max((float)(mCanvas.width)/mFoto.width, (float)(mCanvas.height)/mFoto.height);
-            mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
-
-            // first color to Fade
-            ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
-            //find a color to fade
-            findSimilarColors(rColor, mFoto);
-
-            mState = FLASHING_IN;
-            flashValue = 1.0;
-            stayWhiteCount = 0;
-        }
-        */
-        if(mCamera.isFrameFocused()){
+        if((mCamera.getFocusState() == ofxEdsdk::Camera::OFX_EDSDK_FOCUS_OK) ||
+           (mCamera.getFocusState() == ofxEdsdk::Camera::OFX_EDSDK_FOCUS_FAIL)) {
             mState = FLASHING_IN;
             flashValue = 1.0;
             stayWhiteCount = 0;
