@@ -39,7 +39,7 @@ void ofApp::update(){
             mState = FLASHING_IN;
             flashValue = 1.0;
             stayWhiteCount = 0;
-            mCamera.takeFocusedPhoto();
+            mCamera.takePhotoAF();
         }
     }
     else if (mState == FLASHING_IN) {
