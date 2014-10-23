@@ -3,7 +3,6 @@
 #include "ofMain.h"
 #include "ofxSyphon.h"
 #include "ofxEdsdk.h"
-#include "PixelFadeScene.h"
 #include "GifScene.h"
 
 class ofApp : public ofBaseApp{
