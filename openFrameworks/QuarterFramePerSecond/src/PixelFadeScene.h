@@ -3,6 +3,14 @@
 #include "Scene.h"
 
 class PixelFadeScene: public Scene{
+    protected:
+        long long const CAMERA_DELAY_MILLIS = 2000;
+        float const FLASH_IN_INCREMENT = 50.0f;
+        float const FLASH_OUT_INCREMENT = 60.0f;
+        int const FLASH_DURATION_COUNT = 4;
+        int const PICTURE_DURATION_COUNT = 50;
+        float const PICTURE_FADE_IN_INCREMENT = 1.0f;
+        float const PICTURE_FADE_OUT_INCREMENT = 4.0f;
     public:
         PixelFadeScene();
         ~PixelFadeScene();
@@ -15,7 +23,7 @@ class PixelFadeScene: public Scene{
 
         State mState;
         float flashValue;
-        long long nextFlash;
+        long long nextFlashMillis;
         int stayWhiteCount = 0;
 
         vector<ofVec2f> pixelsToFade;

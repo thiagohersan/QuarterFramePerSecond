@@ -4,7 +4,7 @@ PixelFadeScene::PixelFadeScene(){}
 PixelFadeScene::~PixelFadeScene(){}
 
 void PixelFadeScene::setup(ofRectangle &posAndSize){
-    nextFlash = ofGetElapsedTimeMillis()+500;
+    nextFlashMillis = ofGetElapsedTimeMillis()+500;
     mState = INITIAL;
     canvasPositionAndSize = ofRectangle(posAndSize);
     tempFbo.allocate(canvasPositionAndSize.width, canvasPositionAndSize.height);
@@ -12,7 +12,7 @@ void PixelFadeScene::setup(ofRectangle &posAndSize){
 
 void PixelFadeScene::update(ofxEdsdk::Camera &camera){
     // state transitions
-    if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > 1500)) {
+    if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > CAMERA_DELAY_MILLIS)) {
         camera.focusFrame();
         mState = WAITING;
     }
@@ -26,8 +26,8 @@ void PixelFadeScene::update(ofxEdsdk::Camera &camera){
         }
     }
     else if (mState == FLASHING_IN) {
-        flashValue = min(flashValue+50.0, 255.0);
-        if ((flashValue >= 255) && (stayWhiteCount>4)) {
+        flashValue = min(flashValue+FLASH_IN_INCREMENT, 255.0f);
+        if ((flashValue >= 255) && (stayWhiteCount>FLASH_DURATION_COUNT)) {
             stayWhiteCount = 0;
             flashValue = -255.0;
             mState = FLASHING_OUT;
@@ -37,7 +37,7 @@ void PixelFadeScene::update(ofxEdsdk::Camera &camera){
         }
     }
     else if (mState == FLASHING_OUT) {
-        flashValue = min(flashValue+60.0, 0.0);
+        flashValue = min(flashValue+FLASH_OUT_INCREMENT, 0.0f);
         if (flashValue >= 0.0) {
             flashValue = 0.0;
             mState = WAITING_FOR_PICTURE;
@@ -59,8 +59,8 @@ void PixelFadeScene::update(ofxEdsdk::Camera &camera){
         }
     }
     else if (mState == FADING_PICTURE_IN) {
-        flashValue = min(flashValue+1.0, 255.0);
-        if ((flashValue >= 255) && (stayWhiteCount>50)) {
+        flashValue = min(flashValue+PICTURE_FADE_IN_INCREMENT, 255.0f);
+        if ((flashValue >= 255) && (stayWhiteCount>PICTURE_DURATION_COUNT)) {
             stayWhiteCount = 0;
             flashValue = -255.0;
             mState = FADING_PICTURE_OUT;
@@ -75,10 +75,10 @@ void PixelFadeScene::update(ofxEdsdk::Camera &camera){
         }
     }
     else if (mState == CLEARING_PICTURE) {
-        flashValue = min(flashValue+4.0, 0.0);
+        flashValue = min(flashValue+PICTURE_FADE_OUT_INCREMENT, 0.0f);
         if (flashValue >= 0.0) {
             mState = WAITING;
-            nextFlash = ofGetElapsedTimeMillis()+2000;
+            nextFlashMillis = ofGetElapsedTimeMillis()+CAMERA_DELAY_MILLIS;
         }
     }
 
