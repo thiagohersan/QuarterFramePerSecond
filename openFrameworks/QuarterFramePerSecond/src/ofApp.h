@@ -3,13 +3,14 @@
 #include "ofMain.h"
 #include "ofxSyphon.h"
 #include "ofxEdsdk.h"
+#include "PixelFadeScene.h"
 
 class ofApp : public ofBaseApp{
 	public:
 		void setup();
 		void update();
 		void draw();
-		
+
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y);
@@ -23,25 +24,13 @@ class ofApp : public ofBaseApp{
         ofxSyphonServer syphonServer;
         ofxEdsdk::Camera mCamera;
 
+        PixelFadeScene mPFS;
+
         ofImage mCanvas, mPanels, panelsMask;
+        ofImage fiespMask;
+
         ofRectangle mPanelPositionAndSize;
 
         void toPanels(ofImage &mCanvas, ofImage &mPanels);
         void drawChessboard(ofImage &mCanvas);
-        void findSimilarColors(ofColor &c, ofImage &p);
-        bool fadeImage(ofImage &p);
-
-        enum State { INITIAL, WAITING, WAITING_FOR_PICTURE, FLASHING_IN,
-            FLASHING_OUT, FADING_PICTURE_IN, FADING_PICTURE_OUT, CLEARING_PICTURE };
-
-        float flashValue;
-        long long nextFlash;
-        int stayWhiteCount = 0;
-
-        vector<ofVec2f> pixelsToFade;
-        vector<ofColor> colorsToRand;
-        ofImage mFoto;
-        ofImage fiespMask;
-
-        State mState;
 };
