@@ -24,6 +24,7 @@
 		AF4DAF1F19C033E900114F1F /* Syphon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4DAF0819C0326800114F1F /* Syphon.framework */; };
 		AF4DAF2019C0360400114F1F /* Syphon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF4DAF0819C0326800114F1F /* Syphon.framework */; };
 		AF8333DB19C22F4D00942532 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8333DA19C22F4D00942532 /* GLUT.framework */; };
+		AFC0228E19F8C16400B05F4A /* PixelFadeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFC0228C19F8C16400B05F4A /* PixelFadeScene.cpp */; };
 		AFF41FB419C230E6008EEB42 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF8333DA19C22F4D00942532 /* GLUT.framework */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -102,6 +103,9 @@
 		AF4DAF1419C0326800114F1F /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxSyphonServerDirectory.h; sourceTree = "<group>"; };
 		AF4DAF1519C0326800114F1F /* ofxSyphonServerDirectory.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxSyphonServerDirectory.mm; sourceTree = "<group>"; };
 		AF8333DA19C22F4D00942532 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../openFrameworks/export/osx/Frameworks/GLUT.framework; sourceTree = "<group>"; };
+		AFC0228A19F8BF4200B05F4A /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		AFC0228C19F8C16400B05F4A /* PixelFadeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelFadeScene.cpp; sourceTree = "<group>"; };
+		AFC0228D19F8C16400B05F4A /* PixelFadeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelFadeScene.h; sourceTree = "<group>"; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		E45BE9730E8CC7DD009D7055 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
@@ -161,7 +165,7 @@
 				AF3E1B3319CA319700A8492B /* src */,
 			);
 			name = ofxEdsdk;
-			path =../../../openFrameworks/addons/ofxEdsdk;
+			path = ../../../openFrameworks/addons/ofxEdsdk;
 			sourceTree = "<group>";
 		};
 		AF3E1B2419CA319700A8492B /* lib */ = {
@@ -365,6 +369,9 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				AFC0228C19F8C16400B05F4A /* PixelFadeScene.cpp */,
+				AFC0228D19F8C16400B05F4A /* PixelFadeScene.h */,
+				AFC0228A19F8BF4200B05F4A /* Scene.h */,
 				AF4DAEDC19C02E9B00114F1F /* ofApp.cpp */,
 				AF4DAEDD19C02E9B00114F1F /* ofApp.h */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -467,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF3E1B4819CA319700A8492B /* EdsWrapper.cpp in Sources */,
+				AFC0228E19F8C16400B05F4A /* PixelFadeScene.cpp in Sources */,
 				AF4DAF1D19C0339B00114F1F /* ofxSyphonServer.h in Sources */,
 				AF4DAF1E19C0339B00114F1F /* ofxSyphonServer.mm in Sources */,
 				AF3E1B4519CA319700A8492B /* EdsExamples.cpp in Sources */,
