@@ -53,13 +53,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
             mFotos.push_back(mFoto);
 
             numOfFotosLeft = max(numOfFotosLeft-1,0);
-            if(numOfFotosLeft > 0){
-                flashValue = 1.0;
-                stayWhiteCount = 0;
-                camera.takePhotoNonAF();
-                mState = FLASHING_IN;
-            }
-            else{
+            if(numOfFotosLeft <= 0){
                 // for looping effect
                 for(int i=mFotos.size()-2; i>0; i--){
                     mFotos.push_back(mFotos.at(i));
@@ -67,6 +61,18 @@ void GifScene::update(ofxEdsdk::Camera &camera){
                 currentFotoToDisplay = 0;
                 mState = FADING_PICTURE_IN;
             }
+            else{
+                flashValue = 1.0;
+                stayWhiteCount = 0;
+                mState = WAITING_FOR_CAMERA;
+                lastFotoChangeMillis = ofGetElapsedTimeMillis();
+            }
+        }
+    }
+    else if (mState == WAITING_FOR_CAMERA) {
+        if(ofGetElapsedTimeMillis()-lastFotoChangeMillis > PICTURE_DELAY_MILLIS){
+            camera.takePhotoNonAF();
+            mState = FLASHING_IN;
         }
     }
     else if (mState == FADING_PICTURE_IN) {
