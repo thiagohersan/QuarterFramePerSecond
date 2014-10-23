@@ -21,8 +21,6 @@ void ofApp::setup(){
     fiespMask.loadImage("SP_Urban_MASK_025.png");
 
     ////////////////////
-    // TEMP
-    //mScene = new PixelFadeScene();
     mScene = new GifScene();
     mScene->setup(mPanelPositionAndSize);
 }

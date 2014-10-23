@@ -2,12 +2,18 @@
 
 #include "PixelFadeScene.h"
 
-class GifScene: public PixelFadeScene{
+class GifScene: public Scene{
     protected:
+        long long const CAMERA_DELAY_MILLIS = 2000;
+        float const FLASH_IN_INCREMENT = 50.0f;
+        float const FLASH_OUT_INCREMENT = 60.0f;
+        int const FLASH_DURATION_COUNT = 4;
+        int const PICTURE_DURATION_COUNT = 50;
+        float const PICTURE_FADE_IN_INCREMENT = 4.0f;
+        float const PICTURE_FADE_OUT_INCREMENT = 4.0f;
         long long const ANIMATION_DELAY_MILLIS = 200;
         long long const PICTURE_DELAY_MILLIS = 500;
-        int const NUMBER_OF_PICTURES_TO_TAKE = 5;
-        float const PICTURE_FADE_IN_INCREMENT = 4.0f;
+        int const NUMBER_OF_PICTURES_TO_TAKE = 2;
     public:
         GifScene();
         ~GifScene();
@@ -24,4 +30,17 @@ class GifScene: public PixelFadeScene{
         vector<ofImage> mFotos;
         int currentFotoToDisplay = 0;
         long long lastFotoChangeMillis;
+
+        float flashValue;
+        long long nextFlashMillis;
+        int stayWhiteCount = 0;
+
+        vector<ofVec2f> pixelsToFade;
+        vector<ofColor> colorsToRand;
+        ofImage mFoto;
+        ofFbo tempFbo;
+        ofRectangle canvasPositionAndSize;
+
+        void findSimilarColors(ofColor &c, ofImage &p);
+        bool fadeImage(ofImage &p);
 };

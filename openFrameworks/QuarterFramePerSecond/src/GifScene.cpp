@@ -4,7 +4,9 @@ GifScene::GifScene(){}
 GifScene::~GifScene(){}
 
 void GifScene::setup(ofRectangle &posAndSize){
-    PixelFadeScene::setup(posAndSize);
+    nextFlashMillis = ofGetElapsedTimeMillis()+500;
+    canvasPositionAndSize = ofRectangle(posAndSize);
+    tempFbo.allocate(canvasPositionAndSize.width, canvasPositionAndSize.height);
     mState = INITIAL;
 }
 
@@ -136,4 +138,45 @@ void GifScene::draw(ofImage &canvas){
         tempFbo.end();
     }
     tempFbo.readToPixels(canvas.getPixelsRef());
+}
+
+void GifScene::findSimilarColors(ofColor &c, ofImage &p) {
+    pixelsToFade.clear();
+    colorsToRand.clear();
+
+    for (int y=0; y<p.height; y++) {
+        for (int x=0; x<p.width; x++) {
+            ofColor pixelColor = p.getColor(x, y);
+            ofVec3f rgb(pixelColor.r, pixelColor.g, pixelColor.b);
+            ofVec3f rgb2(c.r, c.g, c.b);
+
+            if(rgb.distanceSquared(rgb2) < 10000){
+                pixelsToFade.push_back(ofVec2f(x,y));
+            }
+            else if (colorsToRand.size() < 255) {
+                colorsToRand.push_back(p.getColor(x,y));
+            }
+        }
+    }
+}
+
+bool GifScene::fadeImage(ofImage &p) {
+    bool randColor = false;
+
+    for(vector<ofVec2f>::iterator it=pixelsToFade.begin(); it!=pixelsToFade.end(); ++it){
+        ofColor pixelColor = p.getColor(it->x, it->y);
+
+        pixelColor = ofColor(min(pixelColor.r+6, 255), min(pixelColor.g+6, 255), min(pixelColor.b+6, 255));
+
+        randColor = (pixelColor.r >= 255 && pixelColor.g >= 255 && pixelColor.b >= 255);
+        p.setColor(it->x, it->y, pixelColor);
+    }
+    p.reloadTexture();
+
+    if (randColor && colorsToRand.size() > 0) {
+        ofColor rColor = colorsToRand.at(ofRandom(colorsToRand.size()));
+        findSimilarColors(rColor, p);
+    }
+
+    return (colorsToRand.size() > 200);
 }
