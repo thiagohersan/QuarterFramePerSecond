@@ -22,15 +22,17 @@ void ofApp::setup(){
 
     ////////////////////
     // TEMP
-    mPFS.setup(mPanelPositionAndSize);
+    //mScene = new PixelFadeScene();
+    mScene = new GifScene();
+    mScene->setup(mPanelPositionAndSize);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     mCamera.update();
 
-    mPFS.update(mCamera);
-    mPFS.draw(mCanvas);
+    mScene->update(mCamera);
+    mScene->draw(mCanvas);
 
     mCanvas.reloadTexture();
     toPanels(mCanvas, mPanels);

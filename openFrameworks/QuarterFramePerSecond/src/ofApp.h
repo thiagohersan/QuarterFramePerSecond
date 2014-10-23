@@ -4,6 +4,7 @@
 #include "ofxSyphon.h"
 #include "ofxEdsdk.h"
 #include "PixelFadeScene.h"
+#include "GifScene.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -24,7 +25,7 @@ class ofApp : public ofBaseApp{
         ofxSyphonServer syphonServer;
         ofxEdsdk::Camera mCamera;
 
-        PixelFadeScene mPFS;
+        Scene* mScene;
 
         ofImage mCanvas, mPanels, panelsMask;
         ofImage fiespMask;

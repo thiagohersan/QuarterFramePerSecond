@@ -3,6 +3,8 @@
 #include "PixelFadeScene.h"
 
 class GifScene: public PixelFadeScene{
+    protected:
+        long long const ANIMATION_DELAY_MILLIS = 200;
     public:
         GifScene();
         ~GifScene();
@@ -10,12 +12,13 @@ class GifScene: public PixelFadeScene{
         void update(ofxEdsdk::Camera &camera);
         void draw(ofImage &canvas);
     protected:
-        enum State { INITIAL, WAITING, WAITING_FOR_PICTURE, FLASHING_IN,
-            FLASHING_OUT, FADING_PICTURE_IN, SHOW_ANIMATION, FADING_PICTURE_OUT, CLEARING_PICTURE };
+        enum State { INITIAL, FOCUSING, WAITING_FOR_PICTURE, FLASHING_IN,
+            FLASHING_OUT, FADING_PICTURE_IN, SHOWING_ANIMATION, FADING_PICTURE_OUT, CLEARING_PICTURE };
 
         State mState;
 
-        int numOfPicturesLeft = 0;
+        int numOfFotosLeft = 0;
         vector<ofImage> mFotos;
-        int currentImageToDisplay = 0;
+        int currentFotoToDisplay = 0;
+        long long lastFotoChangeMillis;
 };
