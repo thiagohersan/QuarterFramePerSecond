@@ -14,9 +14,9 @@ void PixelFadeScene::update(ofxEdsdk::Camera &camera){
     // state transitions
     if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > CAMERA_DELAY_MILLIS)) {
         camera.focusFrame();
-        mState = WAITING;
+        mState = FOCUSING;
     }
-    else if (mState == WAITING) {
+    else if (mState == FOCUSING) {
         if((camera.getFocusState() == ofxEdsdk::Camera::OFX_EDSDK_FOCUS_OK) ||
            (camera.getFocusState() == ofxEdsdk::Camera::OFX_EDSDK_FOCUS_FAIL)) {
             mState = FLASHING_IN;
@@ -77,7 +77,7 @@ void PixelFadeScene::update(ofxEdsdk::Camera &camera){
     else if (mState == CLEARING_PICTURE) {
         flashValue = min(flashValue+PICTURE_FADE_OUT_INCREMENT, 0.0f);
         if (flashValue >= 0.0) {
-            mState = WAITING;
+            mState = FOCUSING;
             nextFlashMillis = ofGetElapsedTimeMillis()+CAMERA_DELAY_MILLIS;
         }
     }
@@ -86,7 +86,7 @@ void PixelFadeScene::update(ofxEdsdk::Camera &camera){
 
 void PixelFadeScene::draw(ofImage &canvas){
     // update images, drawings, graphics, etc...
-    if ((mState == INITIAL) || (mState == WAITING) || (mState == FLASHING_IN) ||
+    if ((mState == INITIAL) || (mState == FOCUSING) || (mState == FLASHING_IN) ||
         (mState == FLASHING_OUT) || (mState == WAITING_FOR_PICTURE)) {
         tempFbo.begin();
         ofBackground(ofColor(abs(flashValue)));

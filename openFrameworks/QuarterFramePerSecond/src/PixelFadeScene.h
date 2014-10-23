@@ -18,7 +18,7 @@ class PixelFadeScene: public Scene{
         void update(ofxEdsdk::Camera &camera);
         void draw(ofImage &canvas);
     protected:
-        enum State { INITIAL, WAITING, WAITING_FOR_PICTURE, FLASHING_IN,
+        enum State { INITIAL, FOCUSING, WAITING_FOR_PICTURE, FLASHING_IN,
             FLASHING_OUT, FADING_PICTURE_IN, FADING_PICTURE_OUT, CLEARING_PICTURE };
 
         State mState;
