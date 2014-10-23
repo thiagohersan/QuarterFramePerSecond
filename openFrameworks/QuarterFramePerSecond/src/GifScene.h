@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PixelFadeScene.h"
+#include "Scene.h"
 
 class GifScene: public Scene{
     protected:
@@ -12,8 +12,8 @@ class GifScene: public Scene{
         float const PICTURE_FADE_IN_INCREMENT = 4.0f;
         float const PICTURE_FADE_OUT_INCREMENT = 4.0f;
         long long const ANIMATION_DELAY_MILLIS = 200;
-        long long const PICTURE_DELAY_MILLIS = 500;
-        int const NUMBER_OF_PICTURES_TO_TAKE = 2;
+        long long const DELAY_BETWEEN_PICTURES_MILLIS = 500;
+        int const MAX_NUMBER_OF_PICTURES_TO_TAKE = 5;
     public:
         GifScene();
         ~GifScene();
