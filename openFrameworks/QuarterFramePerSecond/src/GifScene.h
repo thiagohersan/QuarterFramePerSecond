@@ -6,6 +6,7 @@ class GifScene: public PixelFadeScene{
     protected:
         long long const ANIMATION_DELAY_MILLIS = 200;
         long long const PICTURE_DELAY_MILLIS = 500;
+        int const NUMBER_OF_PICTURES_TO_TAKE = 5;
         float const PICTURE_FADE_IN_INCREMENT = 4.0f;
     public:
         GifScene();

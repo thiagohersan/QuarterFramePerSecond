@@ -12,7 +12,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
     // state transitions
     if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > CAMERA_DELAY_MILLIS)) {
         camera.focusFrame();
-        numOfFotosLeft = 5;
+        numOfFotosLeft = NUMBER_OF_PICTURES_TO_TAKE;
         mFotos.clear();
         mState = FOCUSING;
     }
@@ -110,7 +110,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
     else if (mState == CLEARING_PICTURE) {
         flashValue = min(flashValue+PICTURE_FADE_OUT_INCREMENT, 0.0f);
         if (flashValue >= 0.0) {
-            numOfFotosLeft = 5;
+            numOfFotosLeft = NUMBER_OF_PICTURES_TO_TAKE;
             mFotos.clear();
             mState = FOCUSING;
             nextFlashMillis = ofGetElapsedTimeMillis()+CAMERA_DELAY_MILLIS;
