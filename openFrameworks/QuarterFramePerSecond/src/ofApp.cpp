@@ -83,6 +83,12 @@ void ofApp::drawChessboard(ofImage& canvas){
     }
 }
 
+void ofApp::exit(){
+    cout << "exit\n";
+    delete mScene;
+    ofBaseApp::exit();
+}
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 
