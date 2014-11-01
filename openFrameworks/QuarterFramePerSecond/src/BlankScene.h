@@ -29,4 +29,6 @@ class BlankScene: public Scene{
         ofImage mFoto;
         ofFbo tempFbo;
         ofRectangle canvasPositionAndSize;
+
+        void audioOut(float* output, int bufferSize, int nChannels, int deviceID, long unsigned long tickCount);
 };

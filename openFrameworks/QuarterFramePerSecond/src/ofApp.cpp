@@ -23,6 +23,9 @@ void ofApp::setup(){
     ////////////////////
     mScene = new GifScene();
     mScene->setup(mPanelPositionAndSize);
+
+    mSoundStream.setOutput(mScene);
+	mSoundStream.setup(1, 0, 44100, 256, 4);
 }
 
 //--------------------------------------------------------------

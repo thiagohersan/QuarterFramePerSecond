@@ -43,4 +43,6 @@ class GifScene: public Scene{
 
         void findSimilarColors(ofColor &c, ofImage &p);
         bool fadeImage(ofImage &p);
+
+        void audioOut(float* output, int bufferSize, int nChannels, int deviceID, long unsigned long tickCount);
 };
