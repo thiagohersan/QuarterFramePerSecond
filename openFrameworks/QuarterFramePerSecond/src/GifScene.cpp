@@ -17,7 +17,6 @@ void GifScene::setup(ofRectangle &posAndSize){
         s.loadSound(ofToDataPath(soundsDir.getPath(i)));
         s.setMultiPlay(true);
         shutterSounds.push_back(s);
-        
     }
 }
 
@@ -197,11 +196,4 @@ bool GifScene::fadeImage(ofImage &p) {
     }
 
     return (colorsToRand.size() > 200);
-}
-
-void GifScene::audioOut(float* output, int bufferSize, int nChannels, int deviceID, long unsigned long tickCount){
-    for(int i=0; i<bufferSize; i++){
-        float overallVolume = 1.0f;
-	//	output[i] = sin(2*PI*440*tickCount*bufferSize/44100)*overallVolume;
-	}
 }
