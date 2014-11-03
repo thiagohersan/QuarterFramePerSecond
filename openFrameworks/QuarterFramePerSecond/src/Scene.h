@@ -12,5 +12,5 @@ class Scene: public ofBaseSoundOutput {
         float flickerPeriod;
         virtual void audioOut(float* output, int bufferSize, int nChannels, int deviceID, long unsigned long tickCount) = 0;
         vector<ofSoundPlayer> shutterSounds;
-
+        vector<ofSoundPlayer> applauseSounds;
 };

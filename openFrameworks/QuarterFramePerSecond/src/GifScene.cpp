@@ -9,7 +9,7 @@ void GifScene::setup(ofRectangle &posAndSize){
     tempFbo.allocate(canvasPositionAndSize.width, canvasPositionAndSize.height);
     mState = INITIAL;
     
-    ofDirectory soundsDir("sounds/");
+    ofDirectory soundsDir("sounds/shutter");
     soundsDir.allowExt("wav");
     soundsDir.listDir();
     for(int i=0; i < soundsDir.size(); i++){
@@ -18,6 +18,15 @@ void GifScene::setup(ofRectangle &posAndSize){
         s.setMultiPlay(true);
         shutterSounds.push_back(s);
         
+    }
+    //load applause sounds
+    soundsDir.open("sounds/applause");
+    soundsDir.listDir();
+    for(int i=0; i < soundsDir.size(); i++){
+        ofSoundPlayer s;
+        s.loadSound(ofToDataPath(soundsDir.getPath(i)));
+        s.setMultiPlay(true);
+        applauseSounds.push_back(s);
     }
 }
 
