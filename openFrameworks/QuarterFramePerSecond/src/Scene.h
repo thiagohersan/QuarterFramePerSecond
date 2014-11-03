@@ -10,4 +10,5 @@ class Scene {
         virtual void draw(ofImage &canvas) = 0;
     protected:
         vector<ofSoundPlayer> shutterSounds;
+        vector<ofSoundPlayer> applauseSounds;
 };
