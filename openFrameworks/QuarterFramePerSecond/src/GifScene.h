@@ -35,6 +35,8 @@ class GifScene: public Scene{
         long long nextFlashMillis;
         int stayWhiteCount = 0;
 
+        int currentShutterSound;
+
         vector<ofVec2f> pixelsToFade;
         vector<ofColor> colorsToRand;
         ofImage mFoto;

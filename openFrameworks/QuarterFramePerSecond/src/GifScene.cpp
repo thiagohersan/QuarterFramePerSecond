@@ -8,25 +8,8 @@ void GifScene::setup(ofRectangle &posAndSize){
     canvasPositionAndSize = ofRectangle(posAndSize);
     tempFbo.allocate(canvasPositionAndSize.width, canvasPositionAndSize.height);
     mState = INITIAL;
-    
-    ofDirectory soundsDir("sounds/shutter");
-    soundsDir.allowExt("wav");
-    soundsDir.listDir();
-    for(int i=0; i < soundsDir.size(); i++){
-        ofSoundPlayer s;
-        s.loadSound(ofToDataPath(soundsDir.getPath(i)));
-        s.setMultiPlay(true);
-        shutterSounds.push_back(s);
-    }
-    //load applause sounds
-    soundsDir.open("sounds/applause");
-    soundsDir.listDir();
-    for(int i=0; i < soundsDir.size(); i++){
-        ofSoundPlayer s;
-        s.loadSound(ofToDataPath(soundsDir.getPath(i)));
-        s.setMultiPlay(true);
-        applauseSounds.push_back(s);
-    }
+
+    Scene::loadSounds();
 }
 
 void GifScene::update(ofxEdsdk::Camera &camera){
@@ -44,9 +27,10 @@ void GifScene::update(ofxEdsdk::Camera &camera){
             stayWhiteCount = 0;
             camera.takePhotoAF();
             mState = FLASHING_IN;
-            
-            int r = ofRandom(shutterSounds.size());
-            shutterSounds[r].play();
+
+            currentShutterSound = ofRandom(shutterSounds.size());
+            shutterSounds[currentShutterSound].setVolume(1.0f);
+            shutterSounds[currentShutterSound].play();
         }
     }
     else if (mState == FLASHING_IN) {
@@ -98,9 +82,9 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         if(ofGetElapsedTimeMillis()-lastFotoChangeMillis > DELAY_BETWEEN_PICTURES_MILLIS){
             camera.takePhotoNonAF();
             mState = FLASHING_IN;
-            
-            int r = ofRandom(shutterSounds.size());
-            shutterSounds[r].play();
+
+            shutterSounds[currentShutterSound].setVolume(1.0f);
+            shutterSounds[currentShutterSound].play();
         }
     }
     else if (mState == FADING_PICTURE_IN) {
