@@ -36,6 +36,7 @@ class GifScene: public Scene{
         int stayWhiteCount = 0;
 
         int currentShutterSound;
+        int currentApplauseSound;
 
         vector<ofVec2f> pixelsToFade;
         vector<ofColor> colorsToRand;
