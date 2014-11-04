@@ -2,11 +2,12 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    syphonServer.setName("Syphon Output");
     ofEnableSmoothing();
     ofSetFrameRate(60);
-    mCamera.setup(); //turn on de Canon via USB
+    ofSetLogLevel(OF_LOG_NOTICE);
 
+    syphonServer.setName("Syphon Output");
+    mCamera.setup();
 
     mPanelPositionAndSize = ofRectangle(37,259, 215, 168);
 
@@ -17,114 +18,25 @@ void ofApp::setup(){
     panelsMask.loadImage("SP_Urban_MASK_025.png");
     panelsMask.crop(mPanelPositionAndSize.x, mPanelPositionAndSize.y, mPanelPositionAndSize.width, mPanelPositionAndSize.height);
 
-    nextFlash = ofGetElapsedTimeMillis()+500;
-    mState = WAITING;
-
     fiespMask.loadImage("SP_Urban_MASK_025.png");
 
-    ofDirectory fDir("");
-    fDir.listDir();
-    for(int i=0; i<fDir.numFiles(); i++){
-        if(!(fDir.getPath(i).compare(0, 4, string("foto")) || fDir.getPath(i).compare(fDir.getPath(i).size()-4, 4, string(".jpg")))){
-            fotoFileNames.push_back(fDir.getPath(i));
-        }
-    }
-    currentFoto = 0;
+    ////////////////////
+    mScene = new GifScene();
+    mScene->setup(mPanelPositionAndSize);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     mCamera.update();
 
-    //load picture from canon if its available
-    if(mCamera.isPhotoNew()) {
-        mFoto = mCamera.getPhotoPixels();
-        float sFactor = max((float)(mCanvas.width)/mFoto.width, (float)(mCanvas.height)/mFoto.height);
-        mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
-    }
+    mScene->update(mCamera);
+    mScene->draw(mCanvas);
 
-    // state transitions
-    if (mState == WAITING) {
-        if (ofGetElapsedTimeMillis() > nextFlash) {
-
-            // first color to Fade
-            ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
-            //find a color to fade
-            findSimilarColors(rColor, mFoto);
-
-            mState = FLASHING_IN;
-            flashValue = 1.0;
-            stayWhiteCount = 0;
-
-
-        }
-    }
-    else if (mState == FLASHING_IN) {
-
-        flashValue = min(flashValue+50.0, 255.0);
-        if ((flashValue >= 255) && (stayWhiteCount>4)) {
-            stayWhiteCount = 0;
-            flashValue = -255.0;
-            mState = FLASHING_OUT;
-
-        }
-        else if (flashValue >= 255) {
-            stayWhiteCount++;
-        }
-    }
-    else if (mState == FLASHING_OUT) {
-
-        flashValue = min(flashValue+60.0, 0.0);
-        if (flashValue >= 0.0) {
-            flashValue = 0.0;
-            mState = FADING_PICTURE_IN;
-        }
-    }
-    else if (mState == FADING_PICTURE_IN) {
-        flashValue = min(flashValue+1.0, 255.0);
-        if ((flashValue >= 255) && (stayWhiteCount>50)) {
-            stayWhiteCount = 0;
-            flashValue = -255.0;
-            mState = FADING_PICTURE_OUT;
-        }
-        else if (flashValue >= 255) {
-            stayWhiteCount++;
-        }
-    }
-    else if (mState == FADING_PICTURE_OUT) {
-        if (fadeImage(mFoto) == false) {
-            mState = CLEARING_PICTURE;
-        }
-    }
-    else if (mState == CLEARING_PICTURE) {
-        flashValue = min(flashValue+4.0, 0.0);
-        if (flashValue >= 0.0) {
-            mState = WAITING;
-            nextFlash = ofGetElapsedTimeMillis()+2000;
-            mCamera.takePhoto();
-
-        }
-    }
-
-    // update images, drawings, graphics, etc...
-    if ((mState == WAITING) || (mState == FLASHING_IN) || (mState == FLASHING_OUT)) {
-        mCanvas.setColor(ofColor(abs(flashValue)));
-    }
-    else if ((mState == FADING_PICTURE_IN) || (mState == FADING_PICTURE_OUT) || (mState == CLEARING_PICTURE)) {
-        // draw to temp fbo with a tint
-        ofFbo tempFbo;
-        tempFbo.allocate(mCanvas.width, mCanvas.height);
-        tempFbo.begin();
-        ofBackground(0);
-        ofSetColor(ofColor(abs(flashValue)));
-        mFoto.draw(0,0);
-        tempFbo.end();
-
-        tempFbo.readToPixels(mCanvas.getPixelsRef());
-    }
     mCanvas.reloadTexture();
     toPanels(mCanvas, mPanels);
+    syphonServer.publishScreen();
 }
+
 
 //--------------------------------------------------------------
 void ofApp::draw(){
@@ -181,89 +93,16 @@ void ofApp::drawChessboard(ofImage& canvas){
     }
 }
 
-void ofApp::findSimilarColors(ofColor &c, ofImage &p) {
-    pixelsToFade.clear();
-    colorsToRand.clear();
-
-    for (int y=0; y<p.height; y++) {
-        for (int x=0; x<p.width; x++) {
-            ofColor pixelColor = p.getColor(x, y);
-            ofVec3f rgb(pixelColor.r, pixelColor.g, pixelColor.b);
-            ofVec3f rgb2(c.r, c.g, c.b);
-
-            if(rgb.distanceSquared(rgb2) < 10000){
-                pixelsToFade.push_back(ofVec2f(x,y));
-            }
-            else if (colorsToRand.size() < 255) {
-                colorsToRand.push_back(p.getColor(x,y));
-            }
-        }
-    }
-}
-
-bool ofApp::fadeImage(ofImage &p) {
-    bool randColor = false;
-
-    for(vector<ofVec2f>::iterator it=pixelsToFade.begin(); it!=pixelsToFade.end(); ++it){
-        ofColor pixelColor = p.getColor(it->x, it->y);
-
-        pixelColor = ofColor(min(pixelColor.r+6, 255), min(pixelColor.g+6, 255), min(pixelColor.b+6, 255));
-
-        randColor = (pixelColor.r >= 255 && pixelColor.g >= 255 && pixelColor.b >= 255);
-        p.setColor(it->x, it->y, pixelColor);
-    }
-    p.reloadTexture();
-
-    if (randColor && colorsToRand.size() > 0) {
-        ofColor rColor = colorsToRand.at(ofRandom(colorsToRand.size()));
-        findSimilarColors(rColor, p);
-    }
-
-    return (colorsToRand.size() > 100 );
+void ofApp::exit(){
+    cout << "exit\n";
+    delete mScene;
+    ofBaseApp::exit();
 }
 
 
-//--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){
-
-}
+void ofApp::keyPressed(int key){}
+void ofApp::keyReleased(int key){}
+void ofApp::mouseMoved(int x, int y){}
+void ofApp::mouseDragged(int x, int y, int button){}
+void ofApp::mousePressed(int x, int y, int button){}
+void ofApp::mouseReleased(int x, int y, int button){}
