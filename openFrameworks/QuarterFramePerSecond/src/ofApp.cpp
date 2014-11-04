@@ -48,10 +48,7 @@ void ofApp::draw(){
     ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate()), 10,10, ofColor(255,0,255), ofColor(255,255,0));
 
     fiespMask.draw(0,0);
-
-    mFoto.draw(200, 0);
     mPanels.draw(mPanelPositionAndSize.x,mPanelPositionAndSize.y);
-    syphonServer.publishScreen();
 }
 
 void ofApp::toPanels(ofImage &canvas, ofImage &panels){
