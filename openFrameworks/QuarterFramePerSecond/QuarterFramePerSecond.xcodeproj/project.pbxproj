@@ -24,6 +24,7 @@
 		AF4DAF1F19C033E900114F1F /* Syphon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4DAF0819C0326800114F1F /* Syphon.framework */; };
 		AF4DAF2019C0360400114F1F /* Syphon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF4DAF0819C0326800114F1F /* Syphon.framework */; };
 		AF50A98F1A057C4F0089607E /* BlankScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF50A98E1A057C4F0089607E /* BlankScene.cpp */; };
+		AF50A9951A095D450089607E /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF50A9941A095D450089607E /* Scene.cpp */; };
 		AF8333DB19C22F4D00942532 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8333DA19C22F4D00942532 /* GLUT.framework */; };
 		AFC0229119F8CAAE00B05F4A /* GifScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFC0228F19F8CAAE00B05F4A /* GifScene.cpp */; };
 		AFF41FB419C230E6008EEB42 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF8333DA19C22F4D00942532 /* GLUT.framework */; };
@@ -105,6 +106,7 @@
 		AF4DAF1519C0326800114F1F /* ofxSyphonServerDirectory.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxSyphonServerDirectory.mm; sourceTree = "<group>"; };
 		AF50A98E1A057C4F0089607E /* BlankScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlankScene.cpp; sourceTree = "<group>"; };
 		AF50A9911A057C940089607E /* BlankScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankScene.h; sourceTree = "<group>"; };
+		AF50A9941A095D450089607E /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		AF8333DA19C22F4D00942532 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../openFrameworks/export/osx/Frameworks/GLUT.framework; sourceTree = "<group>"; };
 		AFC0228A19F8BF4200B05F4A /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		AFC0228F19F8CAAE00B05F4A /* GifScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GifScene.cpp; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				AFC0228F19F8CAAE00B05F4A /* GifScene.cpp */,
 				AFC0229019F8CAAE00B05F4A /* GifScene.h */,
 				AFC0228A19F8BF4200B05F4A /* Scene.h */,
+				AF50A9941A095D450089607E /* Scene.cpp */,
 				AF4DAEDC19C02E9B00114F1F /* ofApp.cpp */,
 				AF4DAEDD19C02E9B00114F1F /* ofApp.h */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -479,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF3E1B4819CA319700A8492B /* EdsWrapper.cpp in Sources */,
+				AF50A9951A095D450089607E /* Scene.cpp in Sources */,
 				AF50A98F1A057C4F0089607E /* BlankScene.cpp in Sources */,
 				AF4DAF1D19C0339B00114F1F /* ofxSyphonServer.h in Sources */,
 				AF4DAF1E19C0339B00114F1F /* ofxSyphonServer.mm in Sources */,
