@@ -12,7 +12,6 @@ class GifScene: public Scene{
         float const PICTURE_FADE_IN_INCREMENT = 4.0f;
         float const PICTURE_FADE_OUT_INCREMENT = 4.0f;
         long long const ANIMATION_DELAY_MILLIS = 200;
-        long long const DELAY_BETWEEN_PICTURES_MILLIS = 500;
         int const MAX_NUMBER_OF_PICTURES_TO_TAKE = 10;
     public:
         GifScene();
@@ -36,6 +35,7 @@ class GifScene: public Scene{
         int stayWhiteCount = 0;
 
         int currentShutterSound;
+        int currentApplauseSound;
 
         vector<ofVec2f> pixelsToFade;
         vector<ofColor> colorsToRand;

@@ -69,18 +69,23 @@ void GifScene::update(ofxEdsdk::Camera &camera){
                 currentFotoToDisplay = 0;
                 mFoto = mFotos.at(currentFotoToDisplay);
                 mState = FADING_PICTURE_IN;
+
+                currentApplauseSound = ofRandom(applauseSounds.size());
+                applauseSounds[currentApplauseSound].setVolume(1.0f);
+                applauseSounds[currentApplauseSound].setPosition(0.0f);
+                applauseSounds[currentApplauseSound].play();
             }
             else{
                 flashValue = 1.0;
                 stayWhiteCount = 0;
                 mState = WAITING_FOR_CAMERA;
+                camera.takePhotoNonAF();
                 lastFotoChangeMillis = ofGetElapsedTimeMillis();
             }
         }
     }
     else if (mState == WAITING_FOR_CAMERA) {
-        if(ofGetElapsedTimeMillis()-lastFotoChangeMillis > DELAY_BETWEEN_PICTURES_MILLIS){
-            camera.takePhotoNonAF();
+        if(camera.isButtonReleased()){
             mState = FLASHING_IN;
 
             shutterSounds[currentShutterSound].setVolume(1.0f);
@@ -115,6 +120,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         }
     }
     else if (mState == FADING_PICTURE_OUT) {
+        applauseSounds[currentApplauseSound].setVolume(0.95f*applauseSounds[currentApplauseSound].getVolume());
         if (fadeImage(mFoto) == false) {
             mState = CLEARING_PICTURE;
         }
@@ -122,10 +128,11 @@ void GifScene::update(ofxEdsdk::Camera &camera){
     else if (mState == CLEARING_PICTURE) {
         flashValue = min(flashValue+PICTURE_FADE_OUT_INCREMENT, 0.0f);
         if (flashValue >= 0.0) {
-            numOfFotosLeft = ofRandom(1, MAX_NUMBER_OF_PICTURES_TO_TAKE);
+            numOfFotosLeft = ofRandom(3, MAX_NUMBER_OF_PICTURES_TO_TAKE);
             mFotos.clear();
             mState = FOCUSING;
             nextFlashMillis = ofGetElapsedTimeMillis()+CAMERA_DELAY_MILLIS;
+            applauseSounds[currentApplauseSound].stop();
         }
     }
 }
