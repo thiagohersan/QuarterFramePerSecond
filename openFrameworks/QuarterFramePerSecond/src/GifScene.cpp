@@ -12,6 +12,12 @@ void GifScene::setup(ofRectangle &posAndSize){
     Scene::loadSounds();
 }
 
+void GifScene::setVolume(float v){
+    maxVolume = v;
+    shutterSounds[currentShutterSound].setVolume(Scene::maxVolume);
+    applauseSounds[currentApplauseSound].setVolume(Scene::maxVolume);
+}
+
 void GifScene::update(ofxEdsdk::Camera &camera){
     // state transitions
     if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > CAMERA_DELAY_MILLIS)) {
@@ -29,7 +35,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
             mState = FLASHING_IN;
 
             currentShutterSound = ofRandom(shutterSounds.size());
-            shutterSounds[currentShutterSound].setVolume(1.0f);
+            shutterSounds[currentShutterSound].setVolume(Scene::maxVolume);
             shutterSounds[currentShutterSound].play();
         }
     }
@@ -71,7 +77,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
                 mState = FADING_PICTURE_IN;
 
                 currentApplauseSound = ofRandom(applauseSounds.size());
-                applauseSounds[currentApplauseSound].setVolume(1.0f);
+                applauseSounds[currentApplauseSound].setVolume(Scene::maxVolume);
                 applauseSounds[currentApplauseSound].setPosition(0.0f);
                 applauseSounds[currentApplauseSound].play();
             }
@@ -88,7 +94,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         if(camera.isButtonReleased()){
             mState = FLASHING_IN;
 
-            shutterSounds[currentShutterSound].setVolume(1.0f);
+            shutterSounds[currentShutterSound].setVolume(Scene::maxVolume);
             shutterSounds[currentShutterSound].play();
         }
     }

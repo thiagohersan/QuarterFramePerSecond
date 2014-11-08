@@ -91,3 +91,7 @@ void BlankScene::audioOut(float* output, int bufferSize, int nChannels, int devi
 		output[i] = sin(2*PI*440*tickCount*bufferSize/44100)*overallVolume;
 	}
 }
+
+void BlankScene::setVolume(float v){
+    maxVolume = v;
+}

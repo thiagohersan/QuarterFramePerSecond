@@ -15,6 +15,7 @@ class BlankScene: public Scene{
         void setup(ofRectangle &posAndSize);
         void update(ofxEdsdk::Camera &camera);
         void draw(ofImage &canvas);
+        void setVolume(float v);
     protected:
         enum State { INITIAL, FOCUSING, WAITING_FOR_PICTURE, WAITING_FOR_CAMERA,
             FLASHING_IN, FLASHING_OUT };

@@ -19,6 +19,7 @@ class GifScene: public Scene{
         void setup(ofRectangle &posAndSize);
         void update(ofxEdsdk::Camera &camera);
         void draw(ofImage &canvas);
+        void setVolume(float v);
     protected:
         enum State { INITIAL, FOCUSING, WAITING_FOR_PICTURE, WAITING_FOR_CAMERA, FLASHING_IN,
             FLASHING_OUT, FADING_PICTURE_IN, SHOWING_ANIMATION, FADING_PICTURE_OUT, CLEARING_PICTURE };

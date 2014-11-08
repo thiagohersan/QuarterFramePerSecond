@@ -24,6 +24,7 @@ class ofApp : public ofBaseApp{
         ofxEdsdk::Camera mCamera;
 
         Scene* mScene;
+        bool bPlayAudio;
 
         ofImage mCanvas, mPanels, panelsMask;
         ofImage fiespMask;

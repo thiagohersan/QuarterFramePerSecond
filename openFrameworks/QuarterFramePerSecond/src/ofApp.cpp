@@ -23,6 +23,7 @@ void ofApp::setup(){
     ////////////////////
     mScene = new GifScene();
     mScene->setup(mPanelPositionAndSize);
+    bPlayAudio = true;
 }
 
 //--------------------------------------------------------------
@@ -49,6 +50,13 @@ void ofApp::draw(){
 
     fiespMask.draw(0,0);
     mPanels.draw(mPanelPositionAndSize.x,mPanelPositionAndSize.y);
+
+    if(bPlayAudio){
+        ofDrawBitmapStringHighlight("Audio LIGADO. Para desligar tecle 'A'", 10,600, ofColor(0,200,0), ofColor(255,255,255));
+    }
+    else{
+        ofDrawBitmapStringHighlight("Audio DESLIGADO. Para ligar tecle 'A'", 10,600, ofColor(200,0,0), ofColor(255,255,255));
+    }
 }
 
 void ofApp::toPanels(ofImage &canvas, ofImage &panels){
@@ -97,7 +105,13 @@ void ofApp::exit(){
 }
 
 
-void ofApp::keyPressed(int key){}
+void ofApp::keyPressed(int key){
+    if(key == 'a' || key == 'A'){
+        bPlayAudio = !bPlayAudio;
+        mScene->setVolume(bPlayAudio*1.0f);
+    }
+}
+
 void ofApp::keyReleased(int key){}
 void ofApp::mouseMoved(int x, int y){}
 void ofApp::mouseDragged(int x, int y, int button){}
