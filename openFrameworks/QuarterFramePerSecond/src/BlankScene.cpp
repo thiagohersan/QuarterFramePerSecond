@@ -63,12 +63,12 @@ void BlankScene::update(ofxEdsdk::Camera &camera){
             flashValue = 1.0;
             stayWhiteCount = 0;
             mState = WAITING_FOR_CAMERA;
+            camera.takePhotoNonAF();
             lastFotoChangeMillis = ofGetElapsedTimeMillis();
         }
     }
     else if (mState == WAITING_FOR_CAMERA) {
-        if(ofGetElapsedTimeMillis()-lastFotoChangeMillis > DELAY_BETWEEN_PICTURES_MILLIS){
-            camera.takePhotoNonAF();
+        if(camera.isButtonReleased()){
             mState = FLASHING_IN;
         }
     }
