@@ -91,7 +91,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         }
     }
     else if (mState == WAITING_FOR_CAMERA) {
-        if(camera.isButtonReleased()){
+        if(camera.isButtonPressed()){
             mState = FLASHING_IN;
 
             shutterSounds[currentShutterSound].setVolume(Scene::maxVolume);
