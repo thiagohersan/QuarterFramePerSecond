@@ -59,10 +59,10 @@ void ofApp::draw(){
     mPanels.draw(mPanelPositionAndSize.x,mPanelPositionAndSize.y);
 
     if(bPlayAudio){
-        ofDrawBitmapStringHighlight("Audio LIGADO. Para desligar tecle 'A'", 10,600, ofColor(0,200,0), ofColor(255,255,255));
+        ofDrawBitmapStringHighlight("Audio LIGADO. Para desligar tecle '0'", 10,600, ofColor(0,200,0), ofColor(255,255,255));
     }
     else{
-        ofDrawBitmapStringHighlight("Audio DESLIGADO. Para ligar tecle 'A'", 10,600, ofColor(200,0,0), ofColor(255,255,255));
+        ofDrawBitmapStringHighlight("Audio DESLIGADO. Para ligar tecle '0'", 10,600, ofColor(200,0,0), ofColor(255,255,255));
     }
 
     // which scene
@@ -116,7 +116,7 @@ void ofApp::exit(){
 
 
 void ofApp::keyPressed(int key){
-    if(key == 'a' || key == 'A'){
+    if(key == 'a' || key == 'A' || key == '0'){
         bPlayAudio = !bPlayAudio;
         mScene->setVolume(bPlayAudio*1.0f);
     }
