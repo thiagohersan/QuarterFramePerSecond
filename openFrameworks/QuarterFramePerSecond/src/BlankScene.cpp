@@ -63,12 +63,12 @@ void BlankScene::update(ofxEdsdk::Camera &camera){
             flashValue = 1.0;
             stayWhiteCount = 0;
             mState = WAITING_FOR_CAMERA;
+            camera.takePhotoNonAF();
             lastFotoChangeMillis = ofGetElapsedTimeMillis();
         }
     }
     else if (mState == WAITING_FOR_CAMERA) {
-        if(ofGetElapsedTimeMillis()-lastFotoChangeMillis > DELAY_BETWEEN_PICTURES_MILLIS){
-            camera.takePhotoNonAF();
+        if(camera.isButtonPressed()){
             mState = FLASHING_IN;
         }
     }
@@ -90,4 +90,8 @@ void BlankScene::audioOut(float* output, int bufferSize, int nChannels, int devi
         float overallVolume = 1.0f;
 		output[i] = sin(2*PI*440*tickCount*bufferSize/44100)*overallVolume;
 	}
+}
+
+void BlankScene::setVolume(float v){
+    maxVolume = v;
 }

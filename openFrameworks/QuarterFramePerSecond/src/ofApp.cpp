@@ -21,8 +21,16 @@ void ofApp::setup(){
     fiespMask.loadImage("SP_Urban_MASK_025.png");
 
     ////////////////////
-    mScene = new GifScene();
-    mScene->setup(mPanelPositionAndSize);
+    gifScene = new GifScene();
+    gifScene->setup(mPanelPositionAndSize);
+
+    blankScene = new BlankScene();
+    blankScene->setup(mPanelPositionAndSize);
+
+    mScene = gifScene;
+    mSceneString = STRING_GIF_SCENE;
+
+    bPlayAudio = true;
 }
 
 //--------------------------------------------------------------
@@ -49,6 +57,16 @@ void ofApp::draw(){
 
     fiespMask.draw(0,0);
     mPanels.draw(mPanelPositionAndSize.x,mPanelPositionAndSize.y);
+
+    if(bPlayAudio){
+        ofDrawBitmapStringHighlight("Audio LIGADO. Para desligar tecle '0'", 10,600, ofColor(0,200,0), ofColor(255,255,255));
+    }
+    else{
+        ofDrawBitmapStringHighlight("Audio DESLIGADO. Para ligar tecle '0'", 10,600, ofColor(200,0,0), ofColor(255,255,255));
+    }
+
+    // which scene
+    ofDrawBitmapStringHighlight("playing: "+mSceneString, 10,700, ofColor(200), ofColor(0));
 }
 
 void ofApp::toPanels(ofImage &canvas, ofImage &panels){
@@ -97,7 +115,23 @@ void ofApp::exit(){
 }
 
 
-void ofApp::keyPressed(int key){}
+void ofApp::keyPressed(int key){
+    if(key == 'a' || key == 'A' || key == '0'){
+        bPlayAudio = !bPlayAudio;
+        mScene->setVolume(bPlayAudio*1.0f);
+    }
+    else if(key == '!'){
+        mScene = gifScene;
+        mSceneString = STRING_GIF_SCENE;
+    }
+    else if(key == '@'){
+        mScene = blankScene;
+        mSceneString = STRING_BLANK_SCENE;
+    }
+    else if(key == '#'){
+    }
+}
+
 void ofApp::keyReleased(int key){}
 void ofApp::mouseMoved(int x, int y){}
 void ofApp::mouseDragged(int x, int y, int button){}

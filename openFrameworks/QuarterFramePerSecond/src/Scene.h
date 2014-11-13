@@ -12,4 +12,7 @@ class Scene {
         static vector<ofSoundPlayer> shutterSounds;
         static vector<ofSoundPlayer> applauseSounds;
         static void loadSounds();
+        static float maxVolume;
+    public:
+        virtual void setVolume(float v) = 0;
 };

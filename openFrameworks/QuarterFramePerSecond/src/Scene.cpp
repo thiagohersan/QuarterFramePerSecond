@@ -2,6 +2,7 @@
 
 vector<ofSoundPlayer> Scene::shutterSounds;
 vector<ofSoundPlayer> Scene::applauseSounds;
+float Scene::maxVolume = 1.0f;
 
 void Scene::loadSounds(){
     ofDirectory soundsDir("sounds/shutter");

@@ -7,7 +7,10 @@
 #include "BlankScene.h"
 
 class ofApp : public ofBaseApp{
-	public:
+    private:
+        const string STRING_GIF_SCENE = "GifScene";
+        const string STRING_BLANK_SCENE = "BlankScene";
+    public:
 		void setup();
 		void update();
 		void draw();
@@ -23,7 +26,9 @@ class ofApp : public ofBaseApp{
         ofxSyphonServer syphonServer;
         ofxEdsdk::Camera mCamera;
 
-        Scene* mScene;
+        Scene* mScene, *gifScene, *blankScene;
+        string mSceneString;
+        bool bPlayAudio;
 
         ofImage mCanvas, mPanels, panelsMask;
         ofImage fiespMask;
