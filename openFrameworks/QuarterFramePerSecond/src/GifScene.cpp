@@ -206,3 +206,28 @@ bool GifScene::fadeImage(ofImage &p) {
 
     return (colorsToRand.size() > 200);
 }
+
+bool GifScene::fadeAllImages() {
+    bool overallRandcolor = true;
+
+    for(vector<ofImage>::iterator jt=mFotos.begin(); jt!=mFotos.end(); ++jt){
+        bool randColor = false;
+
+        for(vector<ofVec2f>::iterator it=pixelsToFade.begin(); it!=pixelsToFade.end(); ++it){
+            ofColor pixelColor = jt->getColor(it->x, it->y);
+            pixelColor = ofColor(min(pixelColor.r+6, 255), min(pixelColor.g+6, 255), min(pixelColor.b+6, 255));
+
+            randColor = (pixelColor.r >= 255 && pixelColor.g >= 255 && pixelColor.b >= 255);
+            jt->setColor(it->x, it->y, pixelColor);
+        }
+        jt->reloadTexture();
+        overallRandcolor &= randColor;
+    }
+
+    if (overallRandcolor && colorsToRand.size() > 0) {
+        ofColor rColor = colorsToRand.at(ofRandom(colorsToRand.size()));
+        findSimilarColors(rColor, mFoto);
+    }
+
+    return (colorsToRand.size() > 200);
+}

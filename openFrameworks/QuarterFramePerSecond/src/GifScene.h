@@ -46,4 +46,5 @@ class GifScene: public Scene{
 
         void findSimilarColors(ofColor &c, ofImage &p);
         bool fadeImage(ofImage &p);
+        bool fadeAllImages();
 };
