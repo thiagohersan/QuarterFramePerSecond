@@ -105,6 +105,8 @@ void GifScene::update(ofxEdsdk::Camera &camera){
             flashValue = -255.0;
             numOfFotosLeft = mFotos.size()*4;
             lastFotoChangeMillis = ofGetElapsedTimeMillis();
+            ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
+            findSimilarColors(rColor, mFoto);
             mState = SHOWING_ANIMATION;
         }
         else if (flashValue >= 255) {
@@ -132,8 +134,9 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         }
     }
     else if (mState == CLEARING_PICTURE) {
+        applauseSounds[currentApplauseSound].setVolume(0.95f*applauseSounds[currentApplauseSound].getVolume());
         flashValue = min(flashValue+PICTURE_FADE_OUT_INCREMENT, 0.0f);
-        if (flashValue >= 0.0) {
+        if (flashValue >= 0.0 && applauseSounds[currentApplauseSound].getVolume()<0.1) {
             numOfFotosLeft = ofRandom(3, MAX_NUMBER_OF_PICTURES_TO_TAKE);
             mFotos.clear();
             mState = FOCUSING;
