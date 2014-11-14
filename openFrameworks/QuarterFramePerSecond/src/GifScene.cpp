@@ -114,7 +114,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         }
     }
     else if (mState == SHOWING_ANIMATION) {
-        if(numOfFotosLeft <= 0 || !fadeAllImages()){
+        if(numOfFotosLeft <= 0){
             ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
             findSimilarColors(rColor, mFoto);
             camera.focusFrame();
@@ -176,7 +176,7 @@ void GifScene::findSimilarColors(ofColor &c, ofImage &p) {
             ofVec3f rgb(pixelColor.r, pixelColor.g, pixelColor.b);
             ofVec3f rgb2(c.r, c.g, c.b);
 
-            if(rgb.distanceSquared(rgb2) < 5000){
+            if(rgb.distanceSquared(rgb2) < 4000){
                 pixelsToFade.push_back(ofVec2f(x,y));
             }
             else if (colorsToRand.size() < 255) {
