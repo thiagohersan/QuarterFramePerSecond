@@ -120,7 +120,10 @@ void FadingGifScene::update(ofxEdsdk::Camera &camera){
     }
     else if (mState == SHOWING_ANIMATION) {
         bool allFotosFaded = false;
-        mFotos.at(currentFotoToDisplay).fadeImage();
+
+        for(vector<FadingImage>::iterator it=mFotos.begin(); it!=mFotos.end(); ++it){
+            it->fadeImage();
+        }
         mFoto = mFotos.at(currentFotoToDisplay).getImage();
 
         if(mFotos.at(currentFotoToDisplay).doneFading()){
