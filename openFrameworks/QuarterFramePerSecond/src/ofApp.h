@@ -4,11 +4,13 @@
 #include "ofxSyphon.h"
 #include "ofxEdsdk.h"
 #include "GifScene.h"
+#include "FadingGifScene.h"
 #include "BlankScene.h"
 
 class ofApp : public ofBaseApp{
     private:
         const string STRING_GIF_SCENE = "GifScene";
+        const string STRING_FADING_GIF_SCENE = "FadingGifScene";
         const string STRING_BLANK_SCENE = "BlankScene";
     public:
 		void setup();
@@ -26,7 +28,7 @@ class ofApp : public ofBaseApp{
         ofxSyphonServer syphonServer;
         ofxEdsdk::Camera mCamera;
 
-        Scene* mScene, *gifScene, *blankScene;
+        Scene* mScene, *gifScene, *blankScene, *fadingGifScene;
         string mSceneString;
         bool bPlayAudio;
 
