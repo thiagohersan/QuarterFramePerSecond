@@ -28,7 +28,6 @@ class FadingGifScene: public Scene{
         State mState;
 
         int numOfFotosLeft = 0;
-        //vector<ofImage> mFotos;
         vector<FadingImage> mFotos;
         int currentFotoToDisplay = 0;
         long long lastFotoChangeMillis;
