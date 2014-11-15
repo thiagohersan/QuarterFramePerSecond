@@ -8,7 +8,6 @@ class BlankScene: public Scene{
         float const FLASH_IN_INCREMENT = 50.0f;
         float const FLASH_OUT_INCREMENT = 60.0f;
         int const FLASH_DURATION_COUNT = 4;
-        long long const DELAY_BETWEEN_PICTURES_MILLIS = 500;
     public:
         BlankScene();
         ~BlankScene();

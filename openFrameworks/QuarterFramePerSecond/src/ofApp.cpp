@@ -24,11 +24,14 @@ void ofApp::setup(){
     gifScene = new GifScene();
     gifScene->setup(mPanelPositionAndSize);
 
+    fadingGifScene = new FadingGifScene();
+    fadingGifScene->setup(mPanelPositionAndSize);
+
     blankScene = new BlankScene();
     blankScene->setup(mPanelPositionAndSize);
 
-    mScene = gifScene;
-    mSceneString = STRING_GIF_SCENE;
+    mScene = fadingGifScene;
+    mSceneString = STRING_FADING_GIF_SCENE;
 
     bPlayAudio = true;
 }
@@ -121,14 +124,16 @@ void ofApp::keyPressed(int key){
         mScene->setVolume(bPlayAudio*1.0f);
     }
     else if(key == '!'){
-        mScene = gifScene;
-        mSceneString = STRING_GIF_SCENE;
+        mScene = fadingGifScene;
+        mSceneString = STRING_FADING_GIF_SCENE;
     }
     else if(key == '@'){
         mScene = blankScene;
         mSceneString = STRING_BLANK_SCENE;
     }
     else if(key == '#'){
+        mScene = gifScene;
+        mSceneString = STRING_GIF_SCENE;
     }
 }
 

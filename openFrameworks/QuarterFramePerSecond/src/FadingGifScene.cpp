@@ -1,9 +1,9 @@
-#include "GifScene.h"
+#include "FadingGifScene.h"
 
-GifScene::GifScene(){}
-GifScene::~GifScene(){}
+FadingGifScene::FadingGifScene(){}
+FadingGifScene::~FadingGifScene(){}
 
-void GifScene::setup(ofRectangle &posAndSize){
+void FadingGifScene::setup(ofRectangle &posAndSize){
     nextFlashMillis = ofGetElapsedTimeMillis()+500;
     canvasPositionAndSize = ofRectangle(posAndSize);
     tempFbo.allocate(canvasPositionAndSize.width, canvasPositionAndSize.height);
@@ -12,13 +12,13 @@ void GifScene::setup(ofRectangle &posAndSize){
     Scene::loadSounds();
 }
 
-void GifScene::setVolume(float v){
+void FadingGifScene::setVolume(float v){
     maxVolume = v;
     shutterSounds[currentShutterSound].setVolume(Scene::maxVolume);
     applauseSounds[currentApplauseSound].setVolume(Scene::maxVolume);
 }
 
-void GifScene::update(ofxEdsdk::Camera &camera){
+void FadingGifScene::update(ofxEdsdk::Camera &camera){
     // state transitions
     if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > CAMERA_DELAY_MILLIS)) {
         camera.focusFrame();
@@ -64,7 +64,9 @@ void GifScene::update(ofxEdsdk::Camera &camera){
             mFoto.reloadTexture();
             float sFactor = max((float)(canvasPositionAndSize.width)/mFoto.width, (float)(canvasPositionAndSize.height)/mFoto.height);
             mFoto.resize(sFactor*mFoto.width, sFactor*mFoto.height);
-            mFotos.push_back(mFoto);
+            FadingImage mfi;
+            mfi.setup(mFoto);
+            mFotos.push_back(mfi);
 
             numOfFotosLeft = max(numOfFotosLeft-1,0);
             if(numOfFotosLeft <= 0){
@@ -73,7 +75,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
                     mFotos.push_back(mFotos.at(i));
                 }
                 currentFotoToDisplay = 0;
-                mFoto = mFotos.at(currentFotoToDisplay);
+                mFoto = mFotos.at(currentFotoToDisplay).getImage();
                 mState = FADING_PICTURE_IN;
 
                 currentApplauseSound = ofRandom(applauseSounds.size());
@@ -105,8 +107,11 @@ void GifScene::update(ofxEdsdk::Camera &camera){
             flashValue = -255.0;
             numOfFotosLeft = mFotos.size()*4;
             lastFotoChangeMillis = ofGetElapsedTimeMillis();
-            ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
-            findSimilarColors(rColor, mFoto);
+
+            mFotos.at(currentFotoToDisplay).setFadecolor();
+            for(vector<FadingImage>::iterator it=mFotos.begin(); it!=mFotos.end(); ++it){
+                it->findSimilarColors();
+            }
             mState = SHOWING_ANIMATION;
         }
         else if (flashValue >= 255) {
@@ -114,22 +119,39 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         }
     }
     else if (mState == SHOWING_ANIMATION) {
-        if(numOfFotosLeft <= 0){
-            ofColor rColor = mFoto.getColor(ofRandom(mFoto.width), ofRandom(mFoto.height));
-            findSimilarColors(rColor, mFoto);
+        bool allFotosFaded = false;
+
+        for(vector<FadingImage>::iterator it=mFotos.begin(); it!=mFotos.end(); ++it){
+            it->fadeImage();
+        }
+        mFoto = mFotos.at(currentFotoToDisplay).getImage();
+
+        if(mFotos.at(currentFotoToDisplay).doneFading()){
+            bool somePixelsToFade = false;
+            mFotos.at(currentFotoToDisplay).setFadecolor();
+            for(vector<FadingImage>::iterator it=mFotos.begin(); it!=mFotos.end(); ++it){
+                somePixelsToFade |= it->findSimilarColors();
+            }
+            allFotosFaded = !somePixelsToFade;
+        }
+
+        if((numOfFotosLeft <= 0) || allFotosFaded){
+            mFotos.at(currentFotoToDisplay).setFadecolor();
+            mFotos.at(currentFotoToDisplay).findSimilarColors();
             camera.focusFrame();
             mState = FADING_PICTURE_OUT;
         }
         else if(ofGetElapsedTimeMillis()-lastFotoChangeMillis > ANIMATION_DELAY_MILLIS){
             numOfFotosLeft = max(numOfFotosLeft-1,0);
             lastFotoChangeMillis = ofGetElapsedTimeMillis();
+            mFotos.at(currentFotoToDisplay).forcePixelClear();
             currentFotoToDisplay = (currentFotoToDisplay+1)%mFotos.size();
-            mFoto = mFotos.at(currentFotoToDisplay);
+            mFoto = mFotos.at(currentFotoToDisplay).getImage();
         }
     }
     else if (mState == FADING_PICTURE_OUT) {
         applauseSounds[currentApplauseSound].setVolume(0.95f*applauseSounds[currentApplauseSound].getVolume());
-        if (fadeImage(mFoto) == false) {
+        if (mFotos.at(currentFotoToDisplay).fadeImage() == false) {
             mState = CLEARING_PICTURE;
         }
     }
@@ -146,7 +168,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
     }
 }
 
-void GifScene::draw(ofImage &canvas){
+void FadingGifScene::draw(ofImage &canvas){
     // update images, drawings, graphics, etc...
     if ((mState == INITIAL) || (mState == FOCUSING) || (mState == FLASHING_IN) ||
         (mState == FLASHING_OUT) || (mState == WAITING_FOR_PICTURE)) {
@@ -164,70 +186,4 @@ void GifScene::draw(ofImage &canvas){
         tempFbo.end();
     }
     tempFbo.readToPixels(canvas.getPixelsRef());
-}
-
-void GifScene::findSimilarColors(ofColor &c, ofImage &p) {
-    pixelsToFade.clear();
-    colorsToRand.clear();
-
-    for (int y=0; y<p.height; y++) {
-        for (int x=0; x<p.width; x++) {
-            ofColor pixelColor = p.getColor(x, y);
-            ofVec3f rgb(pixelColor.r, pixelColor.g, pixelColor.b);
-            ofVec3f rgb2(c.r, c.g, c.b);
-
-            if(rgb.distanceSquared(rgb2) < 4000){
-                pixelsToFade.push_back(ofVec2f(x,y));
-            }
-            else if (colorsToRand.size() < 255) {
-                colorsToRand.push_back(p.getColor(x,y));
-            }
-        }
-    }
-}
-
-bool GifScene::fadeImage(ofImage &p) {
-    bool randColor = false;
-
-    for(vector<ofVec2f>::iterator it=pixelsToFade.begin(); it!=pixelsToFade.end(); ++it){
-        ofColor pixelColor = p.getColor(it->x, it->y);
-
-        pixelColor = ofColor(min(pixelColor.r+6, 255), min(pixelColor.g+6, 255), min(pixelColor.b+6, 255));
-
-        randColor = (pixelColor.r >= 255 && pixelColor.g >= 255 && pixelColor.b >= 255);
-        p.setColor(it->x, it->y, pixelColor);
-    }
-    p.reloadTexture();
-
-    if (randColor && colorsToRand.size() > 0) {
-        ofColor rColor = colorsToRand.at(ofRandom(colorsToRand.size()));
-        findSimilarColors(rColor, p);
-    }
-
-    return (colorsToRand.size() > 200);
-}
-
-bool GifScene::fadeAllImages() {
-    bool overallRandcolor = true;
-
-    for(vector<ofImage>::iterator jt=mFotos.begin(); jt!=mFotos.end(); ++jt){
-        bool randColor = false;
-
-        for(vector<ofVec2f>::iterator it=pixelsToFade.begin(); it!=pixelsToFade.end(); ++it){
-            ofColor pixelColor = jt->getColor(it->x, it->y);
-            pixelColor = ofColor(min(pixelColor.r+6, 255), min(pixelColor.g+6, 255), min(pixelColor.b+6, 255));
-
-            randColor = (pixelColor.r >= 255 && pixelColor.g >= 255 && pixelColor.b >= 255);
-            jt->setColor(it->x, it->y, pixelColor);
-        }
-        jt->reloadTexture();
-        overallRandcolor &= randColor;
-    }
-
-    if (overallRandcolor && colorsToRand.size() > 0) {
-        ofColor rColor = colorsToRand.at(ofRandom(colorsToRand.size()));
-        findSimilarColors(rColor, mFoto);
-    }
-
-    return (colorsToRand.size() > 200);
 }

@@ -25,6 +25,8 @@
 		AF4DAF2019C0360400114F1F /* Syphon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF4DAF0819C0326800114F1F /* Syphon.framework */; };
 		AF50A98F1A057C4F0089607E /* BlankScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF50A98E1A057C4F0089607E /* BlankScene.cpp */; };
 		AF50A9951A095D450089607E /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF50A9941A095D450089607E /* Scene.cpp */; };
+		AF587C941A16951700CC50D0 /* FadingImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF587C921A16951700CC50D0 /* FadingImage.cpp */; };
+		AF587C971A16ABE100CC50D0 /* FadingGifScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF587C951A16ABE100CC50D0 /* FadingGifScene.cpp */; };
 		AF8333DB19C22F4D00942532 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8333DA19C22F4D00942532 /* GLUT.framework */; };
 		AFC0229119F8CAAE00B05F4A /* GifScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFC0228F19F8CAAE00B05F4A /* GifScene.cpp */; };
 		AFF41FB419C230E6008EEB42 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AF8333DA19C22F4D00942532 /* GLUT.framework */; };
@@ -107,6 +109,10 @@
 		AF50A98E1A057C4F0089607E /* BlankScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlankScene.cpp; sourceTree = "<group>"; };
 		AF50A9911A057C940089607E /* BlankScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankScene.h; sourceTree = "<group>"; };
 		AF50A9941A095D450089607E /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
+		AF587C921A16951700CC50D0 /* FadingImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FadingImage.cpp; sourceTree = "<group>"; };
+		AF587C931A16951700CC50D0 /* FadingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadingImage.h; sourceTree = "<group>"; };
+		AF587C951A16ABE100CC50D0 /* FadingGifScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FadingGifScene.cpp; sourceTree = "<group>"; };
+		AF587C961A16ABE100CC50D0 /* FadingGifScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadingGifScene.h; sourceTree = "<group>"; };
 		AF8333DA19C22F4D00942532 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../openFrameworks/export/osx/Frameworks/GLUT.framework; sourceTree = "<group>"; };
 		AFC0228A19F8BF4200B05F4A /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		AFC0228F19F8CAAE00B05F4A /* GifScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GifScene.cpp; sourceTree = "<group>"; };
@@ -374,8 +380,12 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				AF587C951A16ABE100CC50D0 /* FadingGifScene.cpp */,
+				AF587C961A16ABE100CC50D0 /* FadingGifScene.h */,
 				AF50A9911A057C940089607E /* BlankScene.h */,
 				AF50A98E1A057C4F0089607E /* BlankScene.cpp */,
+				AF587C931A16951700CC50D0 /* FadingImage.h */,
+				AF587C921A16951700CC50D0 /* FadingImage.cpp */,
 				AFC0228F19F8CAAE00B05F4A /* GifScene.cpp */,
 				AFC0229019F8CAAE00B05F4A /* GifScene.h */,
 				AFC0228A19F8BF4200B05F4A /* Scene.h */,
@@ -489,10 +499,12 @@
 				AF3E1B4519CA319700A8492B /* EdsExamples.cpp in Sources */,
 				AF3E1B4719CA319700A8492B /* EdsStrings.cpp in Sources */,
 				AF4DAF1C19C032D400114F1F /* ofxSyphon.h in Sources */,
+				AF587C941A16951700CC50D0 /* FadingImage.cpp in Sources */,
 				AF4DAEDE19C02E9B00114F1F /* ofApp.cpp in Sources */,
 				AF3E1B4919CA319700A8492B /* ofxEdsdk.cpp in Sources */,
 				AFC0229119F8CAAE00B05F4A /* GifScene.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				AF587C971A16ABE100CC50D0 /* FadingGifScene.cpp in Sources */,
 				AF3E1B4619CA319700A8492B /* EdsException.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
