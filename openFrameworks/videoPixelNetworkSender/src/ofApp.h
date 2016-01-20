@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "ofxNetwork.h"
 
+#define PHOTO_DIM 50
+
 class ofApp : public ofBaseApp{
     public:
         void setup();
@@ -26,5 +28,5 @@ class ofApp : public ofBaseApp{
         ofImage imgToSend;
 
         ofxUDPManager udpConnection;
-        char frameBuffer[50*50*3];
+        char frameBuffer[PHOTO_DIM*PHOTO_DIM*3];
 };

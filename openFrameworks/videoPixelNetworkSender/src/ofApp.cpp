@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     camDim = ofVec2f(320, 240);
-    sendDim = ofVec2f(50, 50);
+    sendDim = ofVec2f(PHOTO_DIM, PHOTO_DIM);
 
     //we can now get back a list of devices.
     vector<ofVideoDevice> devices = vidGrabber.listDevices();
