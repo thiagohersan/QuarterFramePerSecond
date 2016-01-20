@@ -2,8 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    camWidth = 320;  // try to grab at this size.
-    camHeight = 240;
+    camDim = ofVec2f(320, 240);
+    sendDim = ofVec2f(50, 50);
 
     //we can now get back a list of devices.
     vector<ofVideoDevice> devices = vidGrabber.listDevices();
@@ -11,25 +11,20 @@ void ofApp::setup(){
     for(int i = 0; i < devices.size(); i++){
         if(devices[i].bAvailable){
             ofLogNotice() << devices[i].id << ": " << devices[i].deviceName;
-        }else{
+        } else{
             ofLogNotice() << devices[i].id << ": " << devices[i].deviceName << " - unavailable ";
         }
     }
 
     vidGrabber.setDeviceID(0);
-    vidGrabber.initGrabber(camWidth, camHeight);
+    vidGrabber.initGrabber(camDim.x, camDim.y);
 
-    videoInverted.allocate(camWidth, camHeight, OF_PIXELS_RGB);
-    //ofSetVerticalSync(true);
-    
     udpConnection.Create();
     udpConnection.Connect("localhost",9100);
     udpConnection.SetNonBlocking(false);
     
-    imgToSend.allocate( camWidth, camHeight, OF_IMAGE_COLOR);
-
+    imgToSend.allocate(camDim.x, camDim.y, OF_IMAGE_COLOR);
 }
-
 
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -37,18 +32,16 @@ void ofApp::update(){
     vidGrabber.update();
 
     if(vidGrabber.isFrameNew()){
+        imgToSend.clone(ofImage(vidGrabber.getPixels()));
+        float sFactor = max((float)(sendDim.x)/imgToSend.getWidth(), (float)(sendDim.y)/imgToSend.getHeight());
+        imgToSend.resize(sFactor*imgToSend.getWidth(), sFactor*imgToSend.getHeight());
+        imgToSend.crop((imgToSend.getWidth()-sendDim.x)/2.0, (imgToSend.getHeight()-sendDim.y)/2.0, sendDim.x, sendDim.y);
+        
+        for(int i=0; i<imgToSend.getHeight(); i++) {
+            for(int j=0; j<imgToSend.getWidth(); j++) {
+                ofColor color = imgToSend.getColor(j,i);
+                int index = j + imgToSend.getWidth()*i;
 
-        imgToSend.clone( ofImage(vidGrabber.getPixels()));
-        imgToSend.resize(50, 50);
-        
-        
-        for(int i=0;i<imgToSend.getWidth();i++)
-        {
-            for(int j=0;j<imgToSend.getHeight();j++)
-            {
-                ofColor color = imgToSend.getColor(i,j);
-                int index = i + imgToSend.getWidth()*j;
-                
                 frameBuffer[index].r = color.r;
                 frameBuffer[index].g = color.g;
                 frameBuffer[index].b = color.b;
@@ -66,10 +59,8 @@ void ofApp::update(){
 void ofApp::draw(){
     ofSetHexColor(0xffffff);
     vidGrabber.draw(0, 0);
-    imgToSend.draw(camWidth,0,camWidth,camHeight);
-
+    imgToSend.draw(camDim.x,0,camDim.y,camDim.y);
 }
-
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){

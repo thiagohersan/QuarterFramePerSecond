@@ -60,17 +60,13 @@ void checkForImage() {
   // We need to unpack JPG and put it in the PImage video
   video.loadPixels();
   try {
-
-
-    for (int i=0; i<video.width; i++)
-    {
-      for (int j=0; j<video.height; j++)
-      {
-        int id = (i*3)+(j*video.width*3);        
+    for (int i=0; i<video.height; i++) {
+      for (int j=0; j<video.width; j++) {
+        int id = (j*3)+(i*video.width*3);
         int r = data[id];
         int g = data[id+1];
-        int b = data[id+3];
-        video.pixels[i+video.width*j] = color(r, g, b);
+        int b = data[id+2];
+        video.pixels[j+video.width*i] = color(r, g, b);
       }
     }
   } 

@@ -3,18 +3,14 @@
 #include "ofMain.h"
 #include "ofxNetwork.h"
 
-struct Packet
-{
+struct Packet {
     unsigned char r;
     unsigned char g;
     unsigned char b;
 };
 
-
 class ofApp : public ofBaseApp{
-
     public:
-
         void setup();
         void update();
         void draw();
@@ -31,15 +27,10 @@ class ofApp : public ofBaseApp{
         void dragEvent(ofDragInfo dragInfo);
         void gotMessage(ofMessage msg);        
 
+        ofVec2f camDim, sendDim;
         ofVideoGrabber vidGrabber;
-        ofPixels videoInverted;
-        ofTexture videoTexture; 
-    
+        ofImage imgToSend;
+
         ofxUDPManager udpConnection;
         struct Packet frameBuffer [50*50];
-
-        int camWidth;
-        int camHeight;
-    
-        ofImage imgToSend;
 };
