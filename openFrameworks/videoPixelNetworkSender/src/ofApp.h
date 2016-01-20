@@ -3,12 +3,6 @@
 #include "ofMain.h"
 #include "ofxNetwork.h"
 
-struct Packet {
-    unsigned char r;
-    unsigned char g;
-    unsigned char b;
-};
-
 class ofApp : public ofBaseApp{
     public:
         void setup();
@@ -32,5 +26,5 @@ class ofApp : public ofBaseApp{
         ofImage imgToSend;
 
         ofxUDPManager udpConnection;
-        struct Packet frameBuffer [50*50];
+        char frameBuffer[50*50*3];
 };

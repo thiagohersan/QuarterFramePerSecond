@@ -36,22 +36,22 @@ void ofApp::update(){
         float sFactor = max((float)(sendDim.x)/imgToSend.getWidth(), (float)(sendDim.y)/imgToSend.getHeight());
         imgToSend.resize(sFactor*imgToSend.getWidth(), sFactor*imgToSend.getHeight());
         imgToSend.crop((imgToSend.getWidth()-sendDim.x)/2.0, (imgToSend.getHeight()-sendDim.y)/2.0, sendDim.x, sendDim.y);
-        
+
         for(int i=0; i<imgToSend.getHeight(); i++) {
             for(int j=0; j<imgToSend.getWidth(); j++) {
                 ofColor color = imgToSend.getColor(j,i);
-                int index = j + imgToSend.getWidth()*i;
+                int index = (j*3)+(imgToSend.getWidth()*i*3);
 
-                frameBuffer[index].r = color.r;
-                frameBuffer[index].g = color.g;
-                frameBuffer[index].b = color.b;
+                frameBuffer[index+0] = color.r & 0xff;
+                frameBuffer[index+1] = color.g & 0xff;
+                frameBuffer[index+2] = color.b & 0xff;
             }
         }
-        int sizePack = sizeof(Packet) * imgToSend.getWidth()* imgToSend.getHeight();
-        
-       // string message="S<"+ofToString(sizePack)+ "<";
-       // udpConnection.Send(message.c_str(),message.length());
-        udpConnection.Send( (char *)&frameBuffer,  sizePack);
+        int sizePack = sizeof(frameBuffer);
+
+        // string message="S<"+ofToString(sizePack)+ "<";
+        // udpConnection.Send(message.c_str(),message.length());
+        udpConnection.Send((char*)frameBuffer, sizePack);
     }
 }
 

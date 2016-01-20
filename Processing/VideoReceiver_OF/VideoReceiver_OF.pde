@@ -3,11 +3,13 @@ import javax.imageio.*;
 import java.net.*;
 import java.io.*;
 
+final int PHOTO_DIM = 50;
+
 // Port we are receiving.
 int port = 9100; 
 DatagramSocket ds; 
 // A byte array to read into (max size of 65536, could be smaller)
-byte[] buffer = new byte[50*50*3]; 
+byte[] buffer = new byte[PHOTO_DIM*PHOTO_DIM*3];
 
 PImage video;
 
@@ -19,7 +21,7 @@ void setup() {
   catch (SocketException e) {
     e.printStackTrace();
   } 
-  video = createImage(50, 50, RGB);
+  video = createImage(PHOTO_DIM, PHOTO_DIM, RGB);
 }
 
 void draw() {
@@ -56,16 +58,15 @@ void checkForImage() {
 
   byte[] data = p.getData();
 
-
   // We need to unpack JPG and put it in the PImage video
   video.loadPixels();
   try {
     for (int i=0; i<video.height; i++) {
       for (int j=0; j<video.width; j++) {
         int id = (j*3)+(i*video.width*3);
-        int r = data[id];
-        int g = data[id+1];
-        int b = data[id+2];
+        int r = (int)(data[id]&0xff);
+        int g = (int)(data[id+1]&0xff);
+        int b = (int)(data[id+2]&0xff);
         video.pixels[j+video.width*i] = color(r, g, b);
       }
     }
