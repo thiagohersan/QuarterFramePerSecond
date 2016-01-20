@@ -3,6 +3,10 @@
 GifScene::GifScene(){}
 GifScene::~GifScene(){}
 
+void GifScene::staticCallbackWrapper(void* p){
+    ((GifScene*)p)->onCameraClick();
+}
+
 void GifScene::setup(const ofVec2f &canvasSize){
     photoSize = canvasSize;
     mState = INITIAL;

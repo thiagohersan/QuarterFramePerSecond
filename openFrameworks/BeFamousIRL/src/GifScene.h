@@ -20,6 +20,7 @@ class GifScene {
         void setup(const ofVec2f &canvasSize);
         void update(ofxEdsdk::Camera &camera);
         void draw(ofImage &canvas);
+        static void staticCallbackWrapper(void* p);
         void onCameraClick();
     protected:
         enum State { INITIAL, WAITING_FOR_CLICK, WAITING_FOR_PICTURE, FLASHING_IN, FLASHING_OUT,
