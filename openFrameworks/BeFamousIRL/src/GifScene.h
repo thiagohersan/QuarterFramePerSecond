@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Scene.h"
+#include "ofxEdsdk.h"
 
-class GifScene: public Scene{
+class GifScene {
     protected:
         long long const CAMERA_DELAY_MILLIS = 2000;
         float const FLASH_IN_INCREMENT = 50.0f;
@@ -19,6 +19,7 @@ class GifScene: public Scene{
         void setup(const ofVec2f &canvasSize);
         void update(ofxEdsdk::Camera &camera);
         void draw(ofImage &canvas);
+        void onCameraClick();
     protected:
         enum State { INITIAL, WAITING_FOR_CLICK, WAITING_FOR_PICTURE, FLASHING_IN, FLASHING_OUT,
             FADING_PICTURE_IN, SHOWING_ANIMATION, CLEARING_PICTURE };

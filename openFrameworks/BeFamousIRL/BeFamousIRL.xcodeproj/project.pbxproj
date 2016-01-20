@@ -77,7 +77,6 @@
 		AF97E2521C4EDF6800FF012B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AF97E2531C4EDF6800FF012B /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
 		AF97E2541C4EDF6800FF012B /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
-		AF97E2561C4EDF6800FF012B /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
 		BC8A19E0B2996ACBDA169AC5 /* EDSDK.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EDSDK.h; path = ../../../../../../Dev/of_v0.9.0_osx_release/addons/ofxEdsdk/libs/EDSDK/include/EDSDK.h; sourceTree = SOURCE_ROOT; };
 		CB4F555A06667AD95F807C89 /* EdsExamples.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EdsExamples.h; path = ../../../../../../Dev/of_v0.9.0_osx_release/addons/ofxEdsdk/src/EdsWrapper/EdsExamples.h; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../../../../Dev/of_v0.9.0_osx_release/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -229,7 +228,6 @@
 				AF97E2521C4EDF6800FF012B /* main.cpp */,
 				AF97E2531C4EDF6800FF012B /* ofApp.cpp */,
 				AF97E2541C4EDF6800FF012B /* ofApp.h */,
-				AF97E2561C4EDF6800FF012B /* Scene.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

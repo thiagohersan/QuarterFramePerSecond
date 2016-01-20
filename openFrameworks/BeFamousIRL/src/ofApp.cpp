@@ -13,6 +13,7 @@ void ofApp::setup(){
 
     mScene.setup(canvasSize);
     mCanvas.allocate(canvasSize.x, canvasSize.y, OF_IMAGE_COLOR);
+    ofAddListener(ofxEdsdk::Camera::onVolumeInfoChanged, &mScene, &GifScene::onCameraClick, OF_EVENT_ORDER_BEFORE_APP);
 }
 
 //--------------------------------------------------------------

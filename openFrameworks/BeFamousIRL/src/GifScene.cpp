@@ -9,6 +9,14 @@ void GifScene::setup(const ofVec2f &canvasSize){
     tempFbo.allocate(photoSize.x, photoSize.y);
 }
 
+void GifScene::onCameraClick(){
+    if (mState == WAITING_FOR_CLICK) {
+        flashValue = 1.0;
+        stayWhiteCount = 0;
+        mState = FLASHING_IN;
+    }
+}
+
 void GifScene::update(ofxEdsdk::Camera &camera){
     // state transitions
     if ((mState == INITIAL) && (ofGetElapsedTimeMillis() > CAMERA_DELAY_MILLIS)) {
@@ -17,15 +25,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         mState = WAITING_FOR_CLICK;
     }
     else if (mState == WAITING_FOR_CLICK) {
-        flashValue = 1.0;
-        stayWhiteCount = 0;
-        mState = WAITING_FOR_PICTURE;
-        // TODO: fix this !!
-        /*
-        if(camera.isButtonPressed()){
-            mState = FLASHING_IN;
-        }
-         */
+        // this happens in callback
     }
     else if (mState == FLASHING_IN) {
         flashValue = min(flashValue+FLASH_IN_INCREMENT, 255.0f);
