@@ -6,7 +6,7 @@ const ofVec2f ofApp::canvasSize = ofVec2f(50,50);
 void ofApp::setup(){
     ofEnableSmoothing();
     ofSetFrameRate(60);
-    ofSetLogLevel(OF_LOG_VERBOSE);
+    ofSetLogLevel(OF_LOG_NOTICE);
 
     mCamera.setLiveView(false);
     mCamera.setup();

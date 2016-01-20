@@ -10,9 +10,10 @@ void GifScene::setup(const ofVec2f &canvasSize){
 }
 
 void GifScene::onCameraClick(){
-    if (mState == WAITING_FOR_CLICK) {
+    if ((mState == WAITING_FOR_CLICK) && (ofGetElapsedTimeMillis()-lastFotoChangeMillis > CLICK_DELAY_MILLIS)) {
         flashValue = 1.0;
         stayWhiteCount = 0;
+        lastFotoChangeMillis = ofGetElapsedTimeMillis();
         mState = FLASHING_IN;
     }
 }
@@ -69,7 +70,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
                 flashValue = 1.0;
                 stayWhiteCount = 0;
                 mState = WAITING_FOR_CLICK;
-                //lastFotoChangeMillis = ofGetElapsedTimeMillis();
+                lastFotoChangeMillis = ofGetElapsedTimeMillis();
             }
         }
     }
