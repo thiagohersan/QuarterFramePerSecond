@@ -39,7 +39,4 @@ class GifScene {
         ofVec2f photoSize;
         ofImage mPhoto;
         ofFbo tempFbo;
-
-        bool fadeImage(ofImage &p);
-        bool fadeAllImages();
 };
