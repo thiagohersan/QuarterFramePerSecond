@@ -15,8 +15,8 @@ void ofApp::setup(){
     mCanvas.allocate(canvasSize.x, canvasSize.y, OF_IMAGE_COLOR);
 
     // register the callback and the data ... HACK!!!
-    (ofxEdsdk::Camera::onVolumeInfoChangedFunction) = &GifScene::staticCallbackWrapper;
-    (ofxEdsdk::Camera::volumeInfoChangedFunctionParamater) = (void*)&mScene;
+    (ofxEdsdk::Camera::onVolumeInfoChangedCallbackFunction) = &GifScene::staticCallbackWrapper;
+    (ofxEdsdk::Camera::volumeInfoChangedCallbackParamater) = (void*)&mScene;
 }
 
 //--------------------------------------------------------------
