@@ -1,6 +1,6 @@
 #include "ofApp.h"
 
-const ofVec2f ofApp::canvasSize = ofVec2f(50,50);
+const ofVec2f ofApp::canvasSize = ofVec2f(PHOTO_DIM,PHOTO_DIM);
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -20,6 +20,10 @@ void ofApp::setup(){
     // register the callback and the data ... HACK!!!
     (ofxEdsdk::Camera::onVolumeInfoChangedCallbackFunction) = &GifScene::staticCallbackWrapper;
     (ofxEdsdk::Camera::volumeInfoChangedCallbackParamater) = (void*)&mScene;
+
+    mUDP.Create();
+    mUDP.Connect("localhost", UDP_PORT);
+    mUDP.SetNonBlocking(false);
 }
 
 //--------------------------------------------------------------
@@ -27,6 +31,18 @@ void ofApp::update(){
     mCamera.update();
     mScene.update(mCamera);
     mScene.draw(mCanvas);
+
+    // send every other frame
+    if(ofGetFrameNum()%2){
+        ofPixels mPix = mCanvas.getPixels();
+        int totalPixelCount = mCanvas.getWidth()*mCanvas.getHeight();
+        for(int i=0; i<totalPixelCount; i++){
+            frameBuffer[3*i+0] = mPix[4*i+0];
+            frameBuffer[3*i+1] = mPix[4*i+1];
+            frameBuffer[3*i+2] = mPix[4*i+2];
+        }
+        mUDP.Send((char*)frameBuffer, sizeof(frameBuffer));
+    }
 }
 
 //--------------------------------------------------------------
