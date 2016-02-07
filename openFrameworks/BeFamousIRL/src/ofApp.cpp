@@ -22,13 +22,13 @@ void ofApp::setup(){
     (ofxEdsdk::Camera::volumeInfoChangedCallbackParamater) = (void*)&mScene;
 
     mUDP.Create();
-    mUDP.Connect("localhost", UDP_PORT);
+    mUDP.Connect("192.168.0.200", UDP_PORT);
     mUDP.SetNonBlocking(false);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    mCamera.update();
+    //mCamera.update();
     mScene.update(mCamera);
     mScene.draw(mCanvas);
 
