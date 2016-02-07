@@ -11,8 +11,9 @@ class GifScene {
         int const PICTURE_DURATION_COUNT = 50;
         float const PICTURE_FADE_IN_INCREMENT = 4.0f;
         float const PICTURE_FADE_OUT_INCREMENT = 4.0f;
-        long long const ANIMATION_DELAY_MILLIS = 200;
-        int const NUMBER_OF_PICTURES_TO_TAKE = 4;
+        long long const ANIMATION_DELAY_MILLIS = 250;
+        int const ANIMATION_LOOP_COUNT = 5;
+        int const NUMBER_OF_PICTURES_TO_TAKE = 5;
         int const CLICK_DELAY_MILLIS = 800;
     public:
         GifScene();

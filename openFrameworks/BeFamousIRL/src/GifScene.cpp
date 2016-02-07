@@ -83,7 +83,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         if ((flashValue >= 255) && (stayWhiteCount>PICTURE_DURATION_COUNT)) {
             stayWhiteCount = 0;
             flashValue = -255.0;
-            numOfPhotosLeft = mPhotos.size()*4;
+            numOfPhotosLeft = mPhotos.size()*ANIMATION_LOOP_COUNT;
             lastFotoChangeMillis = ofGetElapsedTimeMillis();
             mState = SHOWING_ANIMATION;
         }
