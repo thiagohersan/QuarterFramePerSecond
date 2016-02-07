@@ -14,10 +14,10 @@ void GifScene::setup(const ofVec2f &canvasSize){
 }
 
 void GifScene::onCameraClick(){
-    if ((mState == WAITING_FOR_CLICK) && (ofGetElapsedTimeMillis()-lastFotoChangeMillis > CLICK_DELAY_MILLIS)) {
+    if ((mState == WAITING_FOR_CLICK) && (ofGetElapsedTimeMillis()-lastPhotoChangeMillis > CLICK_DELAY_MILLIS)) {
         flashValue = 1.0;
         stayWhiteCount = 0;
-        lastFotoChangeMillis = ofGetElapsedTimeMillis();
+        lastPhotoChangeMillis = ofGetElapsedTimeMillis();
         mState = FLASHING_IN;
     }
 }
@@ -74,7 +74,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
                 flashValue = 1.0;
                 stayWhiteCount = 0;
                 mState = WAITING_FOR_CLICK;
-                lastFotoChangeMillis = ofGetElapsedTimeMillis();
+                lastPhotoChangeMillis = ofGetElapsedTimeMillis();
             }
         }
     }
@@ -84,7 +84,7 @@ void GifScene::update(ofxEdsdk::Camera &camera){
             stayWhiteCount = 0;
             flashValue = -255.0;
             numOfPhotosLeft = mPhotos.size()*ANIMATION_LOOP_COUNT;
-            lastFotoChangeMillis = ofGetElapsedTimeMillis();
+            lastPhotoChangeMillis = ofGetElapsedTimeMillis();
             mState = SHOWING_ANIMATION;
         }
         else if (flashValue >= 255) {
@@ -95,9 +95,9 @@ void GifScene::update(ofxEdsdk::Camera &camera){
         if(numOfPhotosLeft <= 0){
             mState = CLEARING_PICTURE;
         }
-        else if(ofGetElapsedTimeMillis()-lastFotoChangeMillis > ANIMATION_DELAY_MILLIS){
+        else if(ofGetElapsedTimeMillis()-lastPhotoChangeMillis > ANIMATION_DELAY_MILLIS){
             numOfPhotosLeft = max(numOfPhotosLeft-1,0);
-            lastFotoChangeMillis = ofGetElapsedTimeMillis();
+            lastPhotoChangeMillis = ofGetElapsedTimeMillis();
             currentPhotoToDisplay = (currentPhotoToDisplay+1)%mPhotos.size();
             mPhoto = mPhotos.at(currentPhotoToDisplay);
         }

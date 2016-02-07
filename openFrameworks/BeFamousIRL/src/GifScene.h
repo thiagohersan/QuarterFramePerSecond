@@ -32,7 +32,7 @@ class GifScene {
         int numOfPhotosLeft = 0;
         vector<ofImage> mPhotos;
         int currentPhotoToDisplay = 0;
-        long long lastFotoChangeMillis;
+        long long lastPhotoChangeMillis;
 
         float flashValue;
         int stayWhiteCount = 0;
