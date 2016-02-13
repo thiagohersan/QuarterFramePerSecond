@@ -20,7 +20,7 @@ void ofApp::setup(){
     vidGrabber.initGrabber(camDim.x, camDim.y);
 
     udpConnection.Create();
-    udpConnection.Connect("localhost",9100);
+    udpConnection.Connect("192.168.0.200",9100);
     udpConnection.SetNonBlocking(false);
     
     imgToSend.allocate(camDim.x, camDim.y, OF_IMAGE_COLOR);
